@@ -30,6 +30,7 @@ library(MVN)
 knitr::opts_chunk$set(echo=TRUE)
 
 Admission_Dataset <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Admission_Dataset.xlsx")
+Admission_Dataset_Initial <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Admission_Dataset_Initial.xlsx")
 ```
 
 ## **1. Objetivo y Anotaciones**
@@ -74,13 +75,23 @@ El conjunto de datos contiene 10 campos y 400 registros. Uno de los campos es si
 
 Por último, es necesario aclarar que en el conjunto de datos los registros de las variables cualitativas fueron reescritos, según los casos, por números enteros positivos, incluido el cero. Así, los sexos en la variable **Gender** fueron reescritos como **0**:**female** y **1**:**male**; en **Research** el evidenciar o no-evidenciar investigaciones fue reescrito como **0**:**no-research** y **1**:**research**; y en **University Rating** la valoración de la universidad fue reescrita como **1**:**one_star**, **2**:**two_stars**, **3**:**three_stars**, **4**:**four_stars** y **5**:**five_stars**.
 
-#### Estructura del Conjunto de Datos
-```{r Estructura_Conjunto_de_Datos, fig.align = 'center'}
+#### Estructura del Conjunto de Datos Inicial
+```{r Estructura_Conjunto_de_Datos_Inicial, fig.align = 'center'}
+str(Admission_Dataset_Initial)
+```
+
+#### Conjunto de Datos Inicial
+```{r Conjunto_de_Datos_Inicial, fig.align = 'center'}
+Admission_Dataset_Initial
+```
+
+#### Estructura del Conjunto de Datos Reescrito
+```{r Estructura_Conjunto_de_Datos_Reescrito, fig.align = 'center'}
 str(Admission_Dataset)
 ```
 
-#### Conjunto de Datos
-```{r Conjunto_de_Datos, fig.align = 'center'}
+#### Conjunto de Datos Reescrito
+```{r Conjunto_de_Datos_Reescrito, fig.align = 'center'}
 Admission_Dataset
 ```
 
