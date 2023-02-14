@@ -184,4 +184,3 @@ Complementariamente a los análisis que fueron expuestos en las secciones de est
 ...
 
 ## **Referencias**
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0px;"></div>
