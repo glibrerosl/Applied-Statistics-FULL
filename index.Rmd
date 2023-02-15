@@ -170,7 +170,7 @@ En este apartado se contempla el uso de procedimientos inferenciales para determ
 
 La prueba de Mardia se basa en extensiones de asimetría y curtosis, el cuadrado de la distancia de Mahalanobis, la cantidad de variables $p$ por tratar y la cantidad de registros $n$. Además, considera que la prueba estadística para la asimetría tiene una distribución $\chi^2$ y la prueba estadística para la curtosis se distirbuye aproximadamente normal. Los detalles sobre los parámetros de las distribuciones pueden consultarse en el trabajo de [@CPEMPorras2016].
 
-La prueba de Henze-Zirkler se basa en la distancia funcional, dado que si el conjunto de datos presenta una distribución normal multivariada, el estadístico de la prueba de distribuye aproximadamente como una lognormal, cuyos parámetros de media $\mu$ y varianza $\sigma^2$ pueden ser consultados en [@CPEMPorras2016].
+La prueba de Henze-Zirkler se basa en la distancia funcional, dado que si el conjunto de datos presenta una distribución normal multivariada, el estadístico de la prueba se distribuye aproximadamente como una lognormal, cuyos parámetros de media $\mu$ y varianza $\sigma^2$ pueden ser consultados en [@CPEMPorras2016].
 
 La prueba de Doornik-Hansen está basada en la asimetría y la curtosis de un conjunto de datos multivariados, que se transforma para garantizar la independencia. Es considerada más potente que la prueba de Shapiro-Wilk para casos multivariados. Su estadístico de prueba está definido como la suma de las transformaciones al cuadrado de la asimetría y la curtosis, y sigue, aproximadamente, una distribución $\chi^2$. Los detalles de la prueba pueden ser consultados en [@OTUMNDoornik_Hansen2008].
 
@@ -184,7 +184,7 @@ La navegación a través de las pestañas muestra que el conjunto de datos, en r
 
 La **PNM de Mardia** establece que si ambas pruebas (para asimetría y curtosis) indican una normalidad multivariante, los datos siguen una DNM con un nivel de significancia $\alpha=0.05$; sin embargo, el caso tratado es contrario a esto. Obsérvese a través de la pestaña **PNM Mardia** que los $p-value$ para la asimetría (Skewness) y curtoris (Kurtosis) son mayores que el nivel de significancia. Por lo tanto, las evidencias no apoyan una hipótesis de normalidad multivariada para el conjunto de datos restringido a sus variables numéricas.
 
-La **PNM de PNM Henze-Zirkler** establece que...
+La **PNM de PNM Henze-Zirkler** establece que el estadístico de prueba no se distribuye aproximadamente como lognormal dado que su $p-value$ es menor que el nivel de significancia $\alpha=0.05$. Así, por contrarrecíproco de la implicación formulada en la descripción de la prueba en la sección 5, el conjunto de datos no está apoyado por las evidencias para seguir una distribución normal multivariada.
 
 La **PNM de Doornik-Hansen** establece que...
 
