@@ -15,7 +15,6 @@ link-citations: yes
 ---
 <!-- Configuración Global de R -->
 ```{r setup, include=FALSE}
-library(readr)
 library(readxl)
 library(corrplot)
 library(GGally)
@@ -165,7 +164,17 @@ faces(Admission_Dataset_Muestreado)
 ```
 
 ## **5. Normalidad Multivariada**
-[párrafo de entrada].
+Como menciona [@CPEMPorras2016] para indagar o establecer el tipo de distribución multivariada de un conjunto de datos se puede recurrir a procedimientos descriptivos, como los gráficos, o a procedimientos inferenciales, como las pruebas estadísticas. En este sentido, se alcanza generalización de resultados al usar las estos últimos, si bien los primeros apoyan a las interpretaciones.
+
+En este apartado se contempla el uso de procedimientos inferenciales para determinar si el conjunto de datos de trabajo, en relación con sus variables numéricas, se distribuye normal multivariado. Las pruebas de normalidad multivariada (PNM) a las que será sometido son: Mardia, Henze-Zirkler, Doornik-Hansen y Royston.
+
+La prueba de Mardia se basa en extensiones de asimetría y curtosis, el cuadrado de la distancia de Mahalanobis, la cantidad de variables $p$ por tratar y la cantidad de registros $n$. Además, considera que la prueba estadística para la asimetría tiene una distribución $\tilde{\chi}^2$ con $\frac{p(p+1)(p+2)}{6}$ grados de libertad; y la prueba estadística para la curtosis se distirbuye $\sim N(p(p+2), p(p+2)/n)$.
+
+La prueba de Henze-Zirkler...
+
+La prueba de Doornik-Hansen...
+
+La prueba de Royston...
 
 ### 5.1. Planteamiento del Problema
 Con base en el conjunto de datos descrito en la sección **2** se hará una prueba estadística de normalidad multivariada, con un nivel de significancia $\alpha=0.05$, para establecer si sus datos métricos provienen de una población normal multivariada. Se recuerda que las variables numéricas del conjunto de datos (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
@@ -173,9 +182,24 @@ Con base en el conjunto de datos descrito en la sección **2** se hará una prue
 ### 5.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La pestaña muestra que, con base en la prueba de normalidad de Mardia, ...
 
-#### Prueba de Normalidad Multivariada de Mardia
-```{r Prueba_Estadistica_Normal_Multivariada_Mardia, fig.align = 'center'}
+#### PNM Mardia
+```{r PNM_Mardia, fig.align = 'center'}
 mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="mardia")
+```
+
+#### PNM Henze-Zirkler
+```{r PNM_Henze_Zirkler, fig.align = 'center'}
+mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="hz")
+```
+
+#### PNM Doornik-Hansen
+```{r PNM_Doornik_Hansen, fig.align = 'center'}
+mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="dh")
+```
+
+#### PNM Royston
+```{r PNM_Royston, fig.align = 'center'}
+mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="royston")
 ```
 
 ## **Conclusiones**
