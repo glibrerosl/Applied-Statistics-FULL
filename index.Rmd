@@ -180,9 +180,9 @@ La prueba de Royston recurre a las pruebas Shapiro-Wilk o Shapiro-Francia para p
 Con base en el conjunto de datos descrito en la sección **2** se hará una prueba estadística de normalidad multivariada, con un nivel de significancia $\alpha=0.05$, para establecer si sus datos métricos provienen de una población normal multivariada. Se recuerda que las variables numéricas del conjunto de datos (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
 
 ### 5.2. Desarrollo del Análisis {.tabset .tabset-pills}
-La navegación a través de las pestañas muestra que el conjunto de datos, en relación con sus variables numéricas, no se distribuye normal multivariado.
+La navegación a través de las pestañas muestra que el conjunto de datos, en relación con sus variables numéricas, no se distribuye normal multivariado. En particular:
 
-La **PNM de Mardia** establece que...
+La **PNM de Mardia** establece que si ambas pruebas (para asimetría y curtosis) indican una normalidad multivariante, los datos siguen una DNM con un nivel de significancia $\alpha=0.05$; sin embargo, el caso tratado es contrario a esto. Obsérvese a través de la pestaña **PNM Mardia** que los $p-value$ para la asimetría (Skewness) y curtoris (Kurtosis) son mayores que el nivel de significancia. Por lo tanto, las evidencias no apoyan una hipótesis de normalidad multivariada para el conjunto de datos restringido a sus variables numéricas.
 
 La **PNM de PNM Henze-Zirkler** establece que...
 
