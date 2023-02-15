@@ -168,9 +168,9 @@ Como menciona [@CPEMPorras2016] para indagar o establecer el tipo de distribuci�
 
 En este apartado se contempla el uso de procedimientos inferenciales para determinar si el conjunto de datos de trabajo, en relación con sus variables numéricas, se distribuye normal multivariado (DNM). Las pruebas de normalidad multivariada (PNM) a las que será sometido son: Mardia, Henze-Zirkler, Doornik-Hansen y Royston. Para estas pruebas de normalidad los test obedecen a un nivel de significancia $\alpha = 0.05$ y a las hipótesis:$$H_0: \text {Las variables tienen una DNM}$$ $$H_1: \text {Las variables NO tienen una DNM}$$ 
 
-La prueba de Mardia se basa en extensiones de asimetría y curtosis, el cuadrado de la distancia de Mahalanobis, la cantidad de variables $p$ por tratar y la cantidad de registros $n$. Además, considera que la prueba estadística para la asimetría tiene una distribución $\tilde{\chi}^2$ con $\frac{p(p+1)(p+2)}{6}$ grados de libertad; y la prueba estadística para la curtosis se distirbuye $\sim N(p(p+2), p(p+2)/n)$. Para más detalles puede consultarse el trabajo de [@CPEMPorras2016].
+La prueba de Mardia se basa en extensiones de asimetría y curtosis, el cuadrado de la distancia de Mahalanobis, la cantidad de variables $p$ por tratar y la cantidad de registros $n$. Además, considera que la prueba estadística para la asimetría tiene una distribución $\chi^2$ y la prueba estadística para la curtosis se distirbuye aproximadamente normal. Los detalles sobre los parámetros de las distribuciones pueden consultarse en el trabajo de [@CPEMPorras2016].
 
-La prueba de Henze-Zirkler se basa en la distancia funcional, dado que si el conjunto de datos presenta una distribución normal multivariada, el estadístico de la prueba de distribuye aproximadamente como una lognormal, cuyos parámetros de media $\mu$ y varianza $\sigma^2$ pueden ser consultados  en [@CPEMPorras2016].
+La prueba de Henze-Zirkler se basa en la distancia funcional, dado que si el conjunto de datos presenta una distribución normal multivariada, el estadístico de la prueba de distribuye aproximadamente como una lognormal, cuyos parámetros de media $\mu$ y varianza $\sigma^2$ pueden ser consultados en [@CPEMPorras2016].
 
 La prueba de Doornik-Hansen está basada en la asimetría y la curtosis de un conjunto de datos multivariados, que se transforma para garantizar la independencia. Es considerada más potente que la prueba de Shapiro-Wilk para casos multivariados. Su estadístico de prueba está definido como la suma de las transformaciones al cuadrado de la asimetría y la curtosis, y sigue, aproximadamente, una distribución $\chi^2$. Los detalles de la prueba pueden ser consultados en [@OTUMNDoornik_Hansen2008].
 
@@ -180,7 +180,7 @@ La prueba de Royston recurre a las pruebas Shapiro-Wilk o Shapiro-Francia para p
 Con base en el conjunto de datos descrito en la sección **2** se hará una prueba estadística de normalidad multivariada, con un nivel de significancia $\alpha=0.05$, para establecer si sus datos métricos provienen de una población normal multivariada. Se recuerda que las variables numéricas del conjunto de datos (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
 
 ### 5.2. Desarrollo del Análisis {.tabset .tabset-pills}
-La navegación a través de las pestañas muestra que el conjunto de datos, en relación con sus variables numéricas, se distribuye normal multivariado.
+La navegación a través de las pestañas muestra que el conjunto de datos, en relación con sus variables numéricas, no se distribuye normal multivariado.
 
 La **PNM de Mardia** establece que...
 
