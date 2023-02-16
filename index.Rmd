@@ -2,7 +2,7 @@
 title: "**Admisión en la Universidad**"
 subtitle: "Estudio de Análisis Multivariado con base en un conjunto de datos de aspirantes extranjeros para ser admitidos en estudios superiores en EE.UU."
 author: "Por: Giancarlo Libreros Londoño::glibrerosl@libertadores.edu.co"
-date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual)."
+date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual). *Cierre de Actualizaciones T1: 2:33 p.m. del 16 de febrero de 2023*."
 output:
   html_document:
     toc: TRUE
@@ -109,13 +109,11 @@ Con base en el conjunto de datos descrito en la sección **2** se calcularán e 
 
 La navegación a través de las pestañas muestra el cálculo de los siguientes objetos: **Vector de Medias** $\bar x$, **Matriz de Varianzas-Covarianzas** $S$ y **Matriz de Correlaciones** $R$.
 
-Con base en la pestaña **Vector de Medias y Boxplots** se puede comentar que...
+Con base en la pestaña **Vector de Medias y Boxplots** se puede describir que en general los datos registrados para cada una de las variables tienden a tener colas izquierdas en su distribuciones, así, las medias estimadas tienden a ser altas. Adicionalmente, en relación con la mediana, solo la variable **SOP** muestra un sesgo notorio en comparación con las demás. Además, todos los casos atípicos son de extremo inferior. Si se revisan los rangos de las variables estudiadas se puede constatar que las medias son altas compradas con los extremos superiores de cada rango.
 
-Con base en la pestaña **Matriz de Varianzas-Covarianzas** se interpreta que...
+Con base en la pestaña **Matriz de Varianzas-Covarianzas** se interpreta que, en general, y como se espera que pase, las relaciones entre las variables, estudiadas por pares, tienden a ser de proporcionalidad directa. Para el caso, se pueden observar la gráfica multivariada mostrada en la pestaña **Diagrama Conjunto de Dispersión, Distribución y Correlaciones [SA]** de la sección 4.2.
 
-Con base en la pestaña **Matriz de Correlaciones** se entiende que...
-
-Complementariamente, ...
+Con base en la pestaña **Matriz de Correlaciones** y al considerar la **Matriz de Varianzas-Covarianzas** es verificable que la intensidad de las corelaciones es más alta y siempre positiva entre las variables: **TOEFL_Score**, **GRE_Score**, **CGPA** y **Chance_of_Admit**, que es esperado en relación con el fenómeno estudiado, esto se puede revisar con más detalles en la sección 4.2.
 
 #### Vector de Medias y Boxplots
 ```{r Vector_de_Medias_y_Boxplots, fig.align = 'center'}
@@ -238,8 +236,12 @@ mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="royston")
 ```
 
 ## **Conclusiones**
-Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de todo lo obtenido:
+Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de lo obtenido.
 
-...
+Como se menciona en el trabajo hecho en el curso Análisis de Regresión (que puede ser consultado temporalmente a través de: https://rpubs.com/glibrerosl/Applied-Statistics-FULL), las aspiraciones de un estudiante extranjero para ingresar a una universidad norteamericana se enfrentan a un elevado grado de competición. Además, se constata, desde la perspectiva de estudio multivariable, que, por lo menos descriptivamente, una variable clasificadora categórica como el sexo, resulta muy poco significativa formar grupos diferenciados entre los estudiantes con aspiraciones de ingreso, asunto que contrasta con los relatos socio-populistas basados en falacias _ad hominem_. El dato, si es fino, siempre será objetivo.
+
+Complementariamente, todas las pruebas de normalidad multivariante resultaron negativas. Así, el deterioro de las propiedades de independencia lineal juegan a favor de la síntesis de información a través de la estimación de componentes principales. Este asunto será tratado en el siguiente trabajo de este mismo curso.
+
+Por último, es importante resaltar el aspecto técnico relacionado con el procesamiento estadístico hecho en este estudio a nivel de robustez, eficiencia e integración que R, RStudio y RMarkdown ofrecen al usuario para que este se pueda enfocar en él sin pasar mayores inconvenientes con el soporte documental para presentarlo.
 
 ## **Referencias**
