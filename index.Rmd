@@ -128,7 +128,9 @@ round(cor(Admission_Dataset[,-c(1,2,8,9)]),2)
 ```
 
 ## **4. Gráficas Multivariadas**
-[párrafo de entrada].
+En la guía de clase de [@AMEDAristizabal2017] se menciona que, en general, los gráficos multivariados cumplen dos objetivos esenciales: primero, ayudan a comparar	el	comportamiento	de	poblaciones de estudio con base en variables categóricas y suavizan la comprensión de la estructura de correlación entre	varias variables. En este sentido, el conjunto de datos de trabajo tendrá apoyo descritivo gráfico a través de tres diagramas: uno conjunto que integra dispersión, distribución y correlaciones; otro basado en la renderización de polígonos, y por último, uno que recurre a las caras de Chernoff.
+
+
 
 ### 4.1. Planteamiento del Problema
 Con base en el conjunto de datos descrito en la sección **2** se calcularán e intepretarán, para las variables numéricas, las gráficas multivariadas de diagrama de correlaciones, matriz de diagrama de dispersión, diagrama de estrellas y caras de Chernoff. Se recuerda que las variables numéricas (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
