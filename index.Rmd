@@ -1,6 +1,6 @@
 ---
 title: "**Admisión en la Universidad**"
-subtitle: "Datos para ser admitido en estudios superiores en EE.UU."
+subtitle: "Estudio de Análisis Multivariado para ser admitido en estudios superiores en EE.UU."
 author: "Por: Giancarlo Libreros Londoño::glibrerosl@libertadores.edu.co"
 date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual)."
 output:
@@ -37,7 +37,7 @@ En términos generales, esta primera etapa de estudio mostrará cálculos, visua
 
 El conjunto de datos de trabajo es descrito en la sección **2**. Cabe anotar que los fundamentos teóricos provienen de notas de clase del curso **Análisis Multivariante** dictado por el profesor Juan Carlos Rubriche Cárdenas para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores; y de los libros: Análisis Multivariante Aplicado con R [@AMARAldas-Uriel2ed] de Joaquín Aldás y Ezequiel Uriel, Análisis Multivariante de Joseph Hair, Rolph Anderson, Ronald Tatham y William Black [@AMHair-etAl5ed], Análisis Estadístico de Datos Multivariados de Luis Guillermo Díaz Monroy y Mario Alfonso Morales Rivera [@AEDMDiaz-Morales1ed], e Introducción a la Teoría Matemática de las Probabilidades y a la Estadística de Howard Tucker [@ITMPETucker1ed].
 
-Este trabajo continúa el hecho en el curso **Análisis de Regresión** dictado por el profesor Dagoberto Bermúdez para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores. En este la bibliografía consultada fue: probabilidad y estadística de Jay L. Devore [@PEDevore7ed], Bioestadística de Wayne W. Daniel [@BEDaniel4ed], Métodos Matemáticos de Estadística de Harald Cramer [@MMECramer1ed]; motivo por el cual se incluyen en las referencias. El trabajo hecho en Análisis de Regresión podrá ser consultado próximamente a través de: https://glibrerosl.github.io/Applied-Statistics-FULL/.
+Este trabajo continúa el hecho en el curso **Análisis de Regresión** dictado por el profesor Dagoberto Bermúdez para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores. En este la bibliografía consultada fue: probabilidad y estadística de Jay L. Devore [@PEDevore7ed], Bioestadística de Wayne W. Daniel [@BEDaniel4ed], Métodos Matemáticos de Estadística de Harald Cramer [@MMECramer1ed]; motivo por el cual se incluyen en las referencias. El trabajo hecho en Análisis de Regresión que puede ser consultado temporalmente a través de: https://rpubs.com/glibrerosl/Applied-Statistics-FULL.
 
 Por último, este trabajo fue procesado con `r R.version.string` mediado por RStudio 2022.12.0 Build 353 en una plataforma x86_64-w64-mingw32. Además, por su naturaleza de publicación en línea y para cumplir con el requisito temporal de entrega, será actualizado, como máximo, hasta las 11:59 p.m. del lunes 13 de febrero de 2023.
 
@@ -136,7 +136,7 @@ Con base en el conjunto de datos descrito en la sección **2** se calcularán e 
 ### 4.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La navegación a través de las pestañas muestra las gráficas multivariadas de: **Diagrama Conjunto de Dispersión, Distribución y Correlaciones** (sin agrupación SA y con agrupación CA (con base en las tres variables categóricas: Gender:GE, Research:RE, University_Rating:UR)), **Diagrama de Estrellas** y **Caras de Chernoff**.
 
-Con base en la pestaña **Diagrama Conjunto de Dispersión, Distribución y Correlaciones** se puede comentar que...
+Con base en la pestaña **Diagrama Conjunto de Dispersión, Distribución y Correlaciones [SA]** se puede describir que las correlaciones más altas, mayores que $0.8$, se dan entre variables esperadas como: **TOEFL_Score**, **GRE_Score**, **CGPA** y **Chance_of_Admit**. Estas variables, según las definiciones dadas en la sección 2 de descripción de datos, son nucleares en el fenómeno estudiado, porque están involucradas con el historial de rendimiento académico del estudiante, su desempeño en la prueba de ingreso a la universidad, su nivel de dominio certificado del idioma inglés y sus índice de probabilidad de ingreso a la universidad a la cual aspira. Sin embargo, ninguna de ellas es descollantemente explicativa. Para más detalles puede consultarse el trabajo de análisis de regrresión formulado sobre el mismo conjunto de datos a través de: https://rpubs.com/glibrerosl/Applied-Statistics-FULL.
 
 Con base en la pestaña **Diagrama de Estrellas** se interpreta que...
 
