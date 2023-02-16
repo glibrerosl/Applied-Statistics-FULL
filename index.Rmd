@@ -25,6 +25,7 @@ library(aplpack)
 library(graphics)
 library(corrplot)
 library(MVN)
+library(reshape2)
 
 knitr::opts_chunk$set(echo=TRUE)
 
@@ -119,6 +120,14 @@ Complementariamente, ...
 #### Vector de Medias
 ```{r vector_de_Medias, fig.align = 'center'}
 apply(Admission_Dataset[,-c(1,2,8,9)], 2, mean)
+```
+
+#### Boxplots
+```{r Boxplots_Conjuntos, fig.align = 'center'}
+Admission_Dataset_Muestreado = Admission_Dataset[,-c(1,2,8,9)]
+par(mfrow = c(1, ncol(Admission_Dataset_Muestreado)))
+label = c("GRE_Score", "TOEFL_Score", "SOP", "LOR", "CGPA", "Chance_of_Admit")
+invisible(lapply(1:ncol(Admission_Dataset_Muestreado), function(i) boxplot(Admission_Dataset_Muestreado[, i], names = label[i])))
 ```
 
 #### Matriz de Varianzas-Covarianzas
