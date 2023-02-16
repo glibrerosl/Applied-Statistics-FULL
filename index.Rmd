@@ -140,11 +140,11 @@ Con base en la pestaña **Diagrama Conjunto de Dispersión, Distribución y Corr
 
 Complementariamente, con base en las pestañas **Diagrama Conjunto de Dispersión, Distribución y Correlaciones** en sus versiones basadas en grupos a partir de las variables categóricas: **Gender**, **Research** y **University_Rating**, se puede apreciar que comparativamente la diferenciación basada en **Gender** no muestra relevancia para elevar la probabilidad de acceso a la universidad de su elección, contrario a lo que sucede con la variable agrupadora **Research** que muestra diferenciadamente lo contrario. Es decir, que un estudiante pertenezca al grupo de aquellos que evidencia trabajo en investigación al momento de presentar su solicitud de acceso, resulta para él en una característica significativamente a favor de sus pretensiones. Por otro lado, la variable clasificadora **University_Rating**, que aporta cinco grupos, muestra que las universidades de dos y cuatro estrellas en todos los casos visualizados en el diagrama son significativas a nivel de correlación, pero, como es esperado, las de mejor rating, atraen a los mejores talentos.
 
-Con base en la pestaña **Diagrama de Estrellas** se interpreta que...
+Con base en la pestaña **Diagrama de Estrellas** se interpreta que hay una variedad notoria de estudiantes en términos de desempeños asociados con las variables numéricas estudiadas, incluso con la que mide el examen de proficiencia en lengua extranjera, para el caso inglés: **TOEFL_Score**. Pero, también es notoria la presencia de grupos de estudiantes con desempeños aproximadamente homogéneos en todas las variables estudiadas, aunque sus escalas de desempeño varian.
 
-Con base en la pestaña **Caras de Chernoff** se entiende que...
+Complementariamente a los diagramas de estrellas, la pestaña **Caras de Chernoff** muestra que la variedad de estudiantes es sensible de establecer. Con relativa claridad, las **Caras de Chernoff** número 1, 10, 21 y 8, 19, 22, pueden conformar un par de grupos de estudiantes que muestran desempeños significativos en las variables medidas, aunque con cambios de escala; es decir, los del segundo grupo se desempeñan mejor que los del primero considerando todas las variables estudiadas. Esto compagina con lo mostrado en el **Diagrama de Estrellas**.
 
-Complementariamente, ...
+Por último, es relevante mencionar que las evidencias descriptivas expuestas en este apartado estén en contra de considerar que el conjunto de datos limitado a las variables numéricas tenga una distribución normal multivariada. Esto se estudia en la sección 5.
 
 #### Diagrama Conjunto de Dispersión, Distribución y Correlaciones [SA]
 ```{r Diagrama_Conjunto_DDC_SA, fig.align = 'center'}
