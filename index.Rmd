@@ -35,7 +35,7 @@ Admission_Dataset_Initial <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializa
 ## **1. Objetivo y Anotaciones**
 En términos generales, esta primera etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en un conjunto de datos desde un enfoque de estadística descriptiva multivariante; además, de incluir una prueba estadística de normalidad multivariada sobre ellos.
 
-El conjunto de datos de trabajo es descrito en la sección **2**. Cabe anotar que los fundamentos teóricos provienen de notas de clase del curso **Análisis Multivariante** dictado por el profesor Juan Carlos Rubriche Cárdenas para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores; y de los libros: Análisis Multivariante Aplicado con R [@AMARAldas-Uriel2ed] de Joaquín Aldás y Ezequiel Uriel, Análisis Multivariante de Joseph Hair, Rolph Anderson, Ronald Tatham y William Black [@AMHair-etAl5ed], Análisis Estadístico de Datos Multivariados de Luis Guillermo Díaz Monroy y Mario Alfonso Morales Rivera [@AEDMDiaz-Morales1ed], e Introducción a la Teoría Matemática de las Probabilidades y a la Estadística de Howard Tucker [@ITMPETucker1ed].
+El conjunto de datos de trabajo es descrito en la sección **2**. Cabe anotar que los fundamentos teóricos provienen de notas de clase del curso **Análisis Multivariante** dictado por el profesor Juan Carlos Rubriche Cárdenas para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores; y de los libros: Análisis Multivariante Aplicado con R [@AMARAldas-Uriel2ed] de Joaquín Aldás y Ezequiel Uriel, Análisis Multivariante de Joseph Hair, Rolph Anderson, Ronald Tatham y William Black [@AMHair-etAl5ed], Análisis Estadístico de Datos Multivariados de Luis Guillermo Díaz Monroy y Mario Alfonso Morales Rivera [@AEDMDiaz-Morales1ed], Introducción a la Teoría Matemática de las Probabilidades y a la Estadística de Howard Tucker [@ITMPETucker1ed] y Análisis Multivariado: Estadística Multivariada Descriptiva de William David Aristizábal Rodríguez [@AMEDAristizabal2017].
 
 Este trabajo continúa el hecho en el curso **Análisis de Regresión** dictado por el profesor Dagoberto Bermúdez para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores. En este la bibliografía consultada fue: probabilidad y estadística de Jay L. Devore [@PEDevore7ed], Bioestadística de Wayne W. Daniel [@BEDaniel4ed], Métodos Matemáticos de Estadística de Harald Cramer [@MMECramer1ed]; motivo por el cual se incluyen en las referencias. El trabajo hecho en Análisis de Regresión que puede ser consultado temporalmente a través de: https://rpubs.com/glibrerosl/Applied-Statistics-FULL.
 
@@ -95,18 +95,22 @@ Admission_Dataset
 ```
 
 ## **3. Estimaciones Multivariadas**
-[párrafo de entrada].
+Como se menciona en [@AMEDAristizabal2017] la de media, varianza y covarianza conforman un conjunto de medidas fundamentales para describir describir el comportamiento	posicional, dispersivo y correlacional de	variables	aleatorias. En este sentido, el conjunto de datos de trabajo que posee cinco variables aleatorias numéricas, y que está representado matricialmente, estima las medidas anteriores a partir de vectores y matrices en el estudio descriptivo multivariable.
+
+El vector de medias indica el comportamiento posicional en el sentido de valor esperado o punto medio para cada variable en relación con todos sus registros. La matriz de varianzas-covarianzas estima las dispersiones, en su diagonal principal, de cada variable del conjunto de datos respecto de cada media obtenida del vector de medias. Además, por encima o por debajo de la diagonal principal, se estiman las covarianzas entre las combinaciones de los posibles pares de variables del conjunto de datos. Para más detalles se puede consultar a [@AMEDAristizabal2017].
+
+Lo anterior, para el conjunto de datos de trabajo, se desarrolla en la sección 3.2.
 
 ### 3.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la sección **2** se calcularán e intepretarán, para las variables numéricas, el vector de medias, la matriz de covarianzas y la matriz de correlaciones. Se recuerda que las variables numéricas (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
+Con base en el conjunto de datos descrito en la sección **2** se calcularán e intepretarán, para las variables numéricas, el vector de medias, la matriz de varianzas-covarianzas y la matriz de correlaciones. Se recuerda que las variables numéricas (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
 
 ### 3.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
-La navegación a través de las pestañas muestra el cálculo de los siguientes objetos: **Vector de Medias** $\bar x$, **Matriz de Covarianzas** $S$ y **Matriz de Correlaciones** $R$.
+La navegación a través de las pestañas muestra el cálculo de los siguientes objetos: **Vector de Medias** $\bar x$, **Matriz de Varianzas-Covarianzas** $S$ y **Matriz de Correlaciones** $R$.
 
 Con base en la pestaña **Vector de Medias** se puede comentar que...
 
-Con base en la pestaña **Matriz de Covarianzas** se interpreta que...
+Con base en la pestaña **Matriz de Varianzas-Covarianzas** se interpreta que...
 
 Con base en la pestaña **Matriz de Correlaciones** se entiende que...
 
@@ -117,8 +121,8 @@ Complementariamente, ...
 apply(Admission_Dataset[,-c(1,2,8,9)], 2, mean)
 ```
 
-#### Matriz de Covarianzas
-```{r matriz_de_Covarianzas, fig.align = 'center'}
+#### Matriz de Varianzas-Covarianzas
+```{r matriz_de_Varianzas_Covarianzas, fig.align = 'center'}
 round(cov(Admission_Dataset[,-c(1,2,8,9)]),2)
 ```
 
