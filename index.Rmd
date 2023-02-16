@@ -1,6 +1,6 @@
 ---
 title: "**Admisión en la Universidad**"
-subtitle: "Estudio de Análisis Multivariado para ser admitido en estudios superiores en EE.UU."
+subtitle: "Estudio de Análisis Multivariado con base en un conjunto de datos de aspirantes extranjeros para ser admitidos en estudios superiores en EE.UU."
 author: "Por: Giancarlo Libreros Londoño::glibrerosl@libertadores.edu.co"
 date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual)."
 output:
