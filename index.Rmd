@@ -33,14 +33,18 @@ Admission_Dataset <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0]
 Admission_Dataset_Initial <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Admission_Dataset_Initial.xlsx")
 ```
 
+<a name="sec1"></a>
+
 ## **Objetivo y Anotaciones [Etapa 1]**
 En términos generales, esta primera etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en un conjunto de datos desde un enfoque de estadística descriptiva multivariante; además, de incluir una prueba estadística de normalidad multivariada sobre ellos.
 
-El conjunto de datos de trabajo es descrito en la sección **2**. Cabe anotar que los fundamentos teóricos provienen de notas de clase del curso **Análisis Multivariante** dictado por el profesor Juan Carlos Rubriche Cárdenas para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores; y de los libros: Análisis Multivariante Aplicado con R [@AMARAldas-Uriel2ed] de Joaquín Aldás y Ezequiel Uriel, Análisis Multivariante de Joseph Hair, Rolph Anderson, Ronald Tatham y William Black [@AMHair-etAl5ed], Análisis Estadístico de Datos Multivariados de Luis Guillermo Díaz Monroy y Mario Alfonso Morales Rivera [@AEDMDiaz-Morales1ed], Introducción a la Teoría Matemática de las Probabilidades y a la Estadística de Howard Tucker [@ITMPETucker1ed] y Análisis Multivariado: Estadística Multivariada Descriptiva de William David Aristizábal Rodríguez [@AMEDAristizabal2017].
+El conjunto de datos de trabajo es descrito en la [sección 2](#sec2). Cabe anotar que los fundamentos teóricos provienen de notas de clase del curso **Análisis Multivariante** dictado por el profesor Juan Carlos Rubriche Cárdenas para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores; y de los libros: Análisis Multivariante Aplicado con R [@AMARAldas-Uriel2ed] de Joaquín Aldás y Ezequiel Uriel, Análisis Multivariante de Joseph Hair, Rolph Anderson, Ronald Tatham y William Black [@AMHair-etAl5ed], Análisis Estadístico de Datos Multivariados de Luis Guillermo Díaz Monroy y Mario Alfonso Morales Rivera [@AEDMDiaz-Morales1ed], Introducción a la Teoría Matemática de las Probabilidades y a la Estadística de Howard Tucker [@ITMPETucker1ed] y Análisis Multivariado: Estadística Multivariada Descriptiva de William David Aristizábal Rodríguez [@AMEDAristizabal2017].
 
 Este trabajo continúa el hecho en el curso **Análisis de Regresión** dictado por el profesor Dagoberto Bermúdez para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores. En este la bibliografía consultada fue: probabilidad y estadística de Jay L. Devore [@PEDevore7ed], Bioestadística de Wayne W. Daniel [@BEDaniel4ed], Métodos Matemáticos de Estadística de Harald Cramer [@MMECramer1ed]; motivo por el cual se incluyen en las referencias. El trabajo hecho en Análisis de Regresión que puede ser consultado temporalmente a través de: https://rpubs.com/glibrerosl/Applied-Statistics-FULL.
 
 Por último, este trabajo fue procesado con `r R.version.string` mediado por RStudio 2022.12.0 Build 353 en una plataforma x86_64-w64-mingw32. Además, por su naturaleza de publicación en línea y para cumplir con el requisito temporal de entrega, será actualizado, como máximo, hasta las 11:59 p.m. del lunes 13 de febrero de 2023.
+
+<a name="sec2"></a>
 
 ## **2. Descripción de los Datos**
 
@@ -100,10 +104,12 @@ Como se menciona en [@AMEDAristizabal2017] la de media, varianza y covarianza co
 
 El vector de medias indica el comportamiento posicional en el sentido de valor esperado o punto medio para cada variable en relación con todos sus registros. La matriz de varianzas-covarianzas estima las dispersiones, en su diagonal principal, de cada variable del conjunto de datos respecto de cada media obtenida del vector de medias. Además, por encima o por debajo de la diagonal principal, se estiman las covarianzas entre las combinaciones de los posibles pares de variables del conjunto de datos. Para más detalles se puede consultar a [@AMEDAristizabal2017].
 
-Lo anterior, para el conjunto de datos de trabajo, se desarrolla en la sección 3.2.
+Lo anterior, para el conjunto de datos de trabajo, se desarrolla en la [sección 3.2.](#sec3_2)
 
 ### 3.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la sección **2** se calcularán e intepretarán, para las variables numéricas, el vector de medias, la matriz de varianzas-covarianzas y la matriz de correlaciones. Se recuerda que las variables numéricas (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se calcularán e intepretarán, para las variables numéricas, el vector de medias, la matriz de varianzas-covarianzas y la matriz de correlaciones. Se recuerda que las variables numéricas (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
+
+<a name="sec3_2"></a>
 
 ### 3.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
@@ -111,9 +117,9 @@ La navegación a través de las pestañas muestra el cálculo de los siguientes 
 
 Con base en la pestaña **Vector de Medias y Boxplots** se puede describir que en general los datos registrados para cada una de las variables tienden a tener colas izquierdas en su distribuciones, así, las medias estimadas tienden a ser altas. Adicionalmente, en relación con la mediana, solo la variable **SOP** muestra un sesgo notorio en comparación con las demás. Además, todos los casos atípicos son de extremo inferior. Si se revisan los rangos de las variables estudiadas se puede constatar que las medias son altas compradas con los extremos superiores de cada rango.
 
-Con base en la pestaña **Matriz de Varianzas-Covarianzas** se interpreta que, en general, y como se espera que pase, las relaciones entre las variables, estudiadas por pares, tienden a ser de proporcionalidad directa. Para el caso, se pueden observar la gráfica multivariada mostrada en la pestaña **Diagrama Conjunto de Dispersión, Distribución y Correlaciones [SA]** de la sección 4.2.
+Con base en la pestaña **Matriz de Varianzas-Covarianzas** se interpreta que, en general, y como se espera que pase, las relaciones entre las variables, estudiadas por pares, tienden a ser de proporcionalidad directa. Para el caso, se pueden observar la gráfica multivariada mostrada en la pestaña **Diagrama Conjunto de Dispersión, Distribución y Correlaciones [SA]** de la [sección 4.2.](#sec4_2)
 
-Con base en la pestaña **Matriz de Correlaciones** y al considerar la **Matriz de Varianzas-Covarianzas** es verificable que la intensidad de las corelaciones es más alta y siempre positiva entre las variables: **TOEFL_Score**, **GRE_Score**, **CGPA** y **Chance_of_Admit**, que es esperado en relación con el fenómeno estudiado, esto se puede revisar con más detalles en la sección 4.2.
+Con base en la pestaña **Matriz de Correlaciones** y al considerar la **Matriz de Varianzas-Covarianzas** es verificable que la intensidad de las corelaciones es más alta y siempre positiva entre las variables: **TOEFL_Score**, **GRE_Score**, **CGPA** y **Chance_of_Admit**, que es esperado en relación con el fenómeno estudiado, esto se puede revisar con más detalles en la [sección 4.2.](#sec4_2)
 
 #### Vector de Medias y Boxplots
 ```{r Vector_de_Medias_y_Boxplots, fig.align = 'center'}
@@ -137,12 +143,14 @@ round(cor(Admission_Dataset[,-c(1,2,8,9)]),2)
 En la guía de clase de [@AMEDAristizabal2017] se menciona que, en general, los gráficos multivariados cumplen dos objetivos esenciales: primero, ayudan a comparar	el	comportamiento	de	poblaciones de estudio con base en variables categóricas y suavizan la comprensión de la estructura de correlación entre	varias variables. En este sentido, el conjunto de datos de trabajo tendrá apoyo descritivo gráfico a través de tres diagramas: uno conjunto que integra dispersión, distribución y correlaciones; otro basado en la renderización de polígonos, y por último, uno que recurre a las caras de Chernoff.
 
 ### 4.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la sección **2** se calcularán e intepretarán, para las variables numéricas, las gráficas multivariadas de diagrama de correlaciones, matriz de diagrama de dispersión, diagrama de estrellas y caras de Chernoff. Se recuerda que las variables numéricas (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se calcularán e intepretarán, para las variables numéricas, las gráficas multivariadas de diagrama de correlaciones, matriz de diagrama de dispersión, diagrama de estrellas y caras de Chernoff. Se recuerda que las variables numéricas (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
+
+<a name="sec4_2"></a>
 
 ### 4.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La navegación a través de las pestañas muestra las gráficas multivariadas de: **Diagrama Conjunto de Dispersión, Distribución y Correlaciones** (sin agrupación SA y con agrupación CA (con base en las tres variables categóricas: Gender:GE, Research:RE, University_Rating:UR)), **Diagrama de Estrellas** y **Caras de Chernoff**.
 
-Con base en la pestaña **Diagrama Conjunto de Dispersión, Distribución y Correlaciones [SA]** se puede describir que las correlaciones más altas, mayores que $0.8$, se dan entre variables esperadas como: **TOEFL_Score**, **GRE_Score**, **CGPA** y **Chance_of_Admit**. Estas variables, según las definiciones dadas en la sección 2 de descripción de datos, son nucleares en el fenómeno estudiado, porque están involucradas con el historial de rendimiento académico del estudiante, su desempeño en la prueba de ingreso a la universidad, su nivel de dominio certificado del idioma inglés y sus índice de probabilidad de ingreso a la universidad a la cual aspira. Sin embargo, ninguna de ellas es descollantemente explicativa. Para más detalles puede consultarse el trabajo de análisis de regrresión formulado sobre el mismo conjunto de datos a través de: https://rpubs.com/glibrerosl/Applied-Statistics-FULL.
+Con base en la pestaña **Diagrama Conjunto de Dispersión, Distribución y Correlaciones [SA]** se puede describir que las correlaciones más altas, mayores que $0.8$, se dan entre variables esperadas como: **TOEFL_Score**, **GRE_Score**, **CGPA** y **Chance_of_Admit**. Estas variables, según las definiciones dadas en la [sección 2](#sec2) de descripción de datos, son nucleares en el fenómeno estudiado, porque están involucradas con el historial de rendimiento académico del estudiante, su desempeño en la prueba de ingreso a la universidad, su nivel de dominio certificado del idioma inglés y sus índice de probabilidad de ingreso a la universidad a la cual aspira. Sin embargo, ninguna de ellas es descollantemente explicativa. Para más detalles puede consultarse el trabajo de análisis de regrresión formulado sobre el mismo conjunto de datos a través de: https://rpubs.com/glibrerosl/Applied-Statistics-FULL.
 
 Complementariamente, con base en las pestañas **Diagrama Conjunto de Dispersión, Distribución y Correlaciones** en sus versiones basadas en grupos a partir de las variables categóricas: **Gender**, **Research** y **University_Rating**, se puede apreciar que comparativamente la diferenciación basada en **Gender** no muestra relevancia para elevar la probabilidad de acceso a la universidad de su elección, contrario a lo que sucede con la variable agrupadora **Research** que muestra diferenciadamente lo contrario. Es decir, que un estudiante pertenezca al grupo de aquellos que evidencia trabajo en investigación al momento de presentar su solicitud de acceso, resulta para él en una característica significativamente a favor de sus pretensiones. Por otro lado, la variable clasificadora **University_Rating**, que aporta cinco grupos, muestra que las universidades de dos y cuatro estrellas en todos los casos visualizados en el diagrama son significativas a nivel de correlación, pero, como es esperado, las de mejor rating, atraen a los mejores talentos.
 
@@ -150,7 +158,7 @@ Con base en la pestaña **Diagrama de Estrellas** se interpreta que hay una vari
 
 Complementariamente a los diagramas de estrellas, la pestaña **Caras de Chernoff** muestra que la variedad de estudiantes es sensible de establecer. Con relativa claridad, las **Caras de Chernoff** número 1, 10, 21 y 8, 19, 22, pueden conformar un par de grupos de estudiantes que muestran desempeños significativos en las variables medidas, aunque con cambios de escala; es decir, los del segundo grupo se desempeñan mejor que los del primero considerando todas las variables estudiadas. Esto compagina con lo mostrado en el **Diagrama de Estrellas**.
 
-Por último, es relevante mencionar que las evidencias descriptivas expuestas en este apartado estén en contra de considerar que el conjunto de datos limitado a las variables numéricas tenga una distribución normal multivariada. Esto se estudia en la sección 5.
+Por último, es relevante mencionar que las evidencias descriptivas expuestas en este apartado estén en contra de considerar que el conjunto de datos limitado a las variables numéricas tenga una distribución normal multivariada. Esto se estudia en la [sección 5](#sec5).
 
 #### Diagrama Conjunto de Dispersión, Distribución y Correlaciones [SA]
 ```{r Diagrama_Conjunto_DDC_SA, fig.align = 'center'}
@@ -186,6 +194,8 @@ Admission_Dataset_Muestreado = Admission_Dataset[sample(1:nrow(Admission_Dataset
 faces(Admission_Dataset_Muestreado)
 ```
 
+<a name="sec5"></a>
+
 ## **5. Normalidad Multivariada**
 Como menciona [@CPEMPorras2016] para indagar o establecer el tipo de distribución multivariada de un conjunto de datos se puede recurrir a procedimientos descriptivos, como los gráficos, o a procedimientos inferenciales, como las pruebas estadísticas. En este sentido, se alcanza generalización de resultados al usar las estos últimos, si bien los primeros apoyan a las interpretaciones.
 
@@ -200,7 +210,7 @@ La prueba de Doornik-Hansen está basada en la asimetría y la curtosis de un co
 La prueba de Royston recurre a las pruebas Shapiro-Wilk o Shapiro-Francia para probar la normalidad multivariada. Así, si  la curtosis es mayor que 3, la prueba de Royston usa Shapiro-Francia para distribuciones leptocurticas. Mientras que para distribuciones platicurticas usa Shapiro-Wilk. En ella los parámetros son obtenidos por aproximaciones polinomiales, esto puede ser consultado en [@CPEMPorras2016].
 
 ### 5.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la sección **2** se hará una prueba estadística de normalidad multivariada, con un nivel de significancia $\alpha=0.05$, para establecer si sus datos métricos provienen de una población normal multivariada. Se recuerda que las variables numéricas del conjunto de datos (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se hará una prueba estadística de normalidad multivariada, con un nivel de significancia $\alpha=0.05$, para establecer si sus datos métricos provienen de una población normal multivariada. Se recuerda que las variables numéricas del conjunto de datos (en escalada de medición de razón) son: **GRE Score**, **TOEFL Score**, **SOP**, **LOR**, **CGPA** y **Chance of Admit**.
 
 ### 5.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La navegación a través de las pestañas muestra que el conjunto de datos, en relación con sus variables numéricas, no se distribuye normal multivariado. En particular:
@@ -238,7 +248,7 @@ mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="royston")
 ## **Objetivo y Anotaciones [Etapa 2]**
 En términos generales, esta segunda etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base el conjunto de datos tratado en la Etapa 1, pero ahora desde un enfoque de análisis de componentes principales sobre las variables cuantitativas, que incluirá: selección, calidad de representación e interpretación.
 
-Recuérdese que el conjunto de datos de trabajo es descrito en la sección **2** y los referentes teóricos en la sección **1**.
+Recuérdese que el conjunto de datos de trabajo es descrito en la [sección 2](#sec2) y los referentes teóricos en la [sección 1](#sec1).
 
 Por último, este trabajo fue procesado con `r R.version.string` mediado por RStudio 2022.12.0 Build 353 en una plataforma x86_64-w64-mingw32. Además, por su naturaleza de publicación en línea y para cumplir con el requisito temporal de entrega, será actualizado, como máximo, hasta las 11:59 p.m. del domingo 26 de febrero de 2023.
 
