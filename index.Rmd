@@ -26,6 +26,8 @@ library(graphics)
 library(corrplot)
 library(MVN)
 library(reshape2)
+library(FactoMineR)
+library(factoextra)
 
 knitr::opts_chunk$set(echo=TRUE)
 
@@ -254,9 +256,37 @@ Por último, este trabajo fue procesado con `r R.version.string` mediado por RSt
 
 ## **7. Selección de Componentes**
 
+### 7.1. Planteamiento del Problema
+
+### 7.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
+#### Matriz ACP
+```{r Matriz_ACP, fig.align = 'center'}
+head(get_eigenvalue(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = TRUE, graph = F, quali.sup = 6)))
+```
+
+#### Matriz de Correlaciones
+```{r Matriz_de_Correlaciones}
+round(cor(Admission_Dataset[,-c(1,2,8,9)]),2)
+```
+
+#### Valores y Vectores Propios
+```{r Valores_y_Vectores_Propios, fig.align = 'center'}
+eigen(cor(Admission_Dataset[,-c(1,2,8,9)]))$values
+eigen(cor(Admission_Dataset[,-c(1,2,8,9)]))$vectors
+```
+
 ## **8. Calidad de Representación**
 
+### 8.1. Planteamiento del Problema
+
+### 8.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
 ## **9. Interpretación de Componentes**
+
+### 9.1. Planteamiento del Problema
+
+### 9.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
 ## **Conclusiones**
 Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de lo obtenido.
