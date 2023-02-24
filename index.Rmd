@@ -2,7 +2,7 @@
 title: "**Admisión en la Universidad**"
 subtitle: "Estudio de Análisis Multivariado con base en un conjunto de datos de aspirantes extranjeros para ser admitidos en estudios superiores en EE.UU."
 author: "Por: Giancarlo Libreros Londoño::glibrerosl@libertadores.edu.co"
-date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual). *Cierre de Actualizaciones T1: 2:33 p.m. del 16 de febrero de 2023*."
+date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual). *Cierre de Actualizaciones [T1: 14:33 16-feb-2023] [T2: 11:59 26-feb-2023]*."
 output:
   html_document:
     toc: TRUE
@@ -33,7 +33,7 @@ Admission_Dataset <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0]
 Admission_Dataset_Initial <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Admission_Dataset_Initial.xlsx")
 ```
 
-## **1. Objetivo y Anotaciones**
+## **Objetivo y Anotaciones [Etapa 1]**
 En términos generales, esta primera etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en un conjunto de datos desde un enfoque de estadística descriptiva multivariante; además, de incluir una prueba estadística de normalidad multivariada sobre ellos.
 
 El conjunto de datos de trabajo es descrito en la sección **2**. Cabe anotar que los fundamentos teóricos provienen de notas de clase del curso **Análisis Multivariante** dictado por el profesor Juan Carlos Rubriche Cárdenas para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores; y de los libros: Análisis Multivariante Aplicado con R [@AMARAldas-Uriel2ed] de Joaquín Aldás y Ezequiel Uriel, Análisis Multivariante de Joseph Hair, Rolph Anderson, Ronald Tatham y William Black [@AMHair-etAl5ed], Análisis Estadístico de Datos Multivariados de Luis Guillermo Díaz Monroy y Mario Alfonso Morales Rivera [@AEDMDiaz-Morales1ed], Introducción a la Teoría Matemática de las Probabilidades y a la Estadística de Howard Tucker [@ITMPETucker1ed] y Análisis Multivariado: Estadística Multivariada Descriptiva de William David Aristizábal Rodríguez [@AMEDAristizabal2017].
@@ -234,6 +234,19 @@ mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="dh")
 ```{r PNM_Royston, fig.align = 'center'}
 mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="royston")
 ```
+
+## **Objetivo y Anotaciones [Etapa 2]**
+En términos generales, esta segunda etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base el conjunto de datos tratado en la Etapa 1, pero ahora desde un enfoque de análisis de componentes principales sobre las variables cuantitativas, que incluirá: selección, calidad de representación e interpretación.
+
+Recuérdese que el conjunto de datos de trabajo es descrito en la sección **2** y los referentes teóricos en la sección **1**.
+
+Por último, este trabajo fue procesado con `r R.version.string` mediado por RStudio 2022.12.0 Build 353 en una plataforma x86_64-w64-mingw32. Además, por su naturaleza de publicación en línea y para cumplir con el requisito temporal de entrega, será actualizado, como máximo, hasta las 11:59 p.m. del domingo 26 de febrero de 2023.
+
+## **7. Selección de Componentes**
+
+## **8. Calidad de Representación**
+
+## **9. Interpretación de Componentes**
 
 ## **Conclusiones**
 Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de lo obtenido.
