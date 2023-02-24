@@ -271,19 +271,19 @@ head(get_eigenvalue(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = T
 round(cor(Admission_Dataset[,-c(1,2,8,9)]),2)
 ```
 
-#### Valores y Vectores Propios sobre Correlaciones
-```{r Valores_y_Vectores_Propios_sobre_Correlaciones, fig.align = 'center'}
+#### Valores y Vectores Propios
+```{r Valores_y_Vectores_Propios, fig.align = 'center'}
 eigen(cor(Admission_Dataset[,-c(1,2,8,9)]))$values
 eigen(cor(Admission_Dataset[,-c(1,2,8,9)]))$vectors
 ```
 
-#### Gráfico de Cattell sobre Varianza
-```{r Cattell_sobre_Varianza, fig.align = 'center'}
-fviz_eig(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = TRUE, graph = F, quali.sup = 6), addlabels = TRUE, ylim=c(0,90))
+#### Gráfico de Cattell
+```{r Grafico_de_Cattell, fig.align = 'center'}
+fviz_eig(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = TRUE, graph = F), addlabels = TRUE, ylim=c(0,90))
 ```
 
-#### Gráfico de Cattell-Kaiser sobre Correlaciones
-```{r Cattell_Kaiser_sobre_Correlaciones}
+#### Gráfico de Cattell-Kaiser
+```{r Grafico_de_Cattell_Kaiser, fig.align = 'center'}
 scree(Admission_Dataset[,-c(1,2,8,9)],factors = FALSE, pc = TRUE, main ="Gráfico Cattell-Kaiser")
 ```
 
