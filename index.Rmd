@@ -308,6 +308,12 @@ fviz_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, gr
 (PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F))$ind$coord
 ```
 
+## **9. Contribuciones**
+
+### 9.1. Planteamiento del Problema
+
+### 9.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
 #### Matriz de Contribuciones
 ```{r Matriz_de_Contribuciones, fig.align = 'center'}
 (get_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F)))$contrib
@@ -338,19 +344,27 @@ fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, gr
 fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 5, top = 10)
 ```
 
-#### Biplot de Variables y Registros
-```{r Biplot_de_Variables_y_Registros, fig.align = 'center'}
-datos <- Admission_Dataset_Initial[,-c(1,2,8,9)]
-suppressWarnings(row.names(datos) <- Admission_Dataset_Initial$Serial)
-datos <- cbind(datos, Admission_Dataset_Initial$University_Rating)
-fviz_pca_biplot(PCA(datos, ncp = 5, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
+## **10. Interpretación de Componentes**
+
+### 10.1. Planteamiento del Problema
+
+### 10.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
+#### Biplot de Variables y Registros [Total]
+```{r Biplot_de_Variables_y_Registros_Total, fig.align = 'center'}
+data_UR <- Admission_Dataset_Initial[,-c(1,2,8)]
+data_All <- cbind(Admission_Dataset_Initial[,-c(1,2,8,9)], data_UR$University_Rating)
+fviz_pca_biplot(PCA(data_All, ncp = 5, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
 ```
 
-## **9. Interpretación de Componentes**
-
-### 9.1. Planteamiento del Problema
-
-### 9.2. Desarrollo del Análisis {.tabset .tabset-pills}
+#### Biplot de Variables y Registros [Subconjunto]
+```{r Biplot_de_Variables_y_Registros_Subconjunto, fig.align = 'center'}
+set.seed(780728)
+data_100_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),100),-c(1,2,8)]
+set.seed(780728)
+data_100 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),100),-c(1,2,8,9)], data_100_UR$University_Rating)
+fviz_pca_biplot(PCA(data_100, ncp = 5, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
+```
 
 ## **Conclusiones**
 Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de lo obtenido.
