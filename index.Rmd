@@ -287,14 +287,64 @@ fviz_eig(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = TRUE, graph = F), add
 scree(Admission_Dataset[,-c(1,2,8,9)],factors = FALSE, pc = TRUE, main ="Gráfico Cattell-Kaiser")
 ```
 
-
 ## **8. Calidad de Representación**
-
-
 
 ### 8.1. Planteamiento del Problema
 
 ### 8.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
+#### Matriz de Representación COS2
+```{r Matriz_de_Repressentacion_COS2, fig.align = 'center'}
+(get_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F)))$cos2
+```
+
+#### Calidad de la Representación COS2
+```{r Calidad_de_la_Representacion, fig.align = 'center'}
+fviz_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), col.var="cos2", gradient.cols=c("#00AFBB","#E7B800","#FC4E07"), repel = TRUE)
+```
+
+#### Coordenadas Individuales
+```{r Coordenadas_Registros, fig.align = 'center'}
+(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F))$ind$coord
+```
+
+#### Matriz de Contribuciones
+```{r Matriz_de_Contribuciones, fig.align = 'center'}
+(get_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F)))$contrib
+```
+
+#### Contribuciones a D1
+```{r Contribuciones_DIM_1, fig.align = 'center'}
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 1, top = 10)
+```
+
+#### Contribuciones a D2
+```{r Contribuciones_DIM_2, fig.align = 'center'}
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 2, top = 10)
+```
+
+#### Contribuciones a D3
+```{r Contribuciones_DIM_3, fig.align = 'center'}
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 3, top = 10)
+```
+
+#### Contribuciones a D4
+```{r Contribuciones_DIM_4, fig.align = 'center'}
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 4, top = 10)
+```
+
+#### Contribuciones a D5
+```{r Contribuciones_DIM_5, fig.align = 'center'}
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 5, top = 10)
+```
+
+#### Biplot de Variables y Registros
+```{r Biplot_de_Variables_y_Registros, fig.align = 'center'}
+datos <- Admission_Dataset_Initial[,-c(1,2,8,9)]
+suppressWarnings(row.names(datos) <- Admission_Dataset_Initial$Serial)
+datos <- cbind(datos, Admission_Dataset_Initial$University_Rating)
+fviz_pca_biplot(PCA(datos, ncp = 5, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
+```
 
 ## **9. Interpretación de Componentes**
 
