@@ -249,21 +249,38 @@ mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="royston")
 ```
 
 ## **Objetivo y Anotaciones [Etapa 2]**
-En términos generales, esta segunda etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base el conjunto de datos tratado en la Etapa 1, pero ahora desde un enfoque de análisis de componentes principales sobre las variables cuantitativas, que incluirá: selección, calidad de representación e interpretación.
+En términos generales, esta segunda etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base el conjunto de datos tratado en la Etapa 1, pero ahora desde un enfoque de análisis de componentes principales sobre las variables cuantitativas, que incluirá: selección, calidad de representación, contribuciones e interpretación.
 
 Recuérdese que el conjunto de datos de trabajo es descrito en la [sección 2](#sec2) y los referentes teóricos en la [sección 1](#sec1).
 
 Por último, este trabajo fue procesado con `r R.version.string` mediado por RStudio 2022.12.0 Build 353 en una plataforma x86_64-w64-mingw32. Además, por su naturaleza de publicación en línea y para cumplir con el requisito temporal de entrega, será actualizado, como máximo, hasta las 11:59 p.m. del domingo 26 de febrero de 2023.
 
+<a name="sec7"></a>
+
 ## **7. Selección de Componentes**
+Como es mencionado en el trabajo de [@AEDMDiaz-Morales1ed] el Análisis de Componentes Principales (en adelante ACP) reestructura un conjunto de datos multivariado a través de la reducción de la cantidad de sus variables, en cuyo transfondo es innecesario asumir ninguna distribución de probabilidad de ellas. Esta reducción es lograda a través de combinaciones lineales de las variables originales, que deberán contener la mayor variabilidad posible presente en el conjunto de datos. En este sentido, el ACP logra crear nuevas variables, conocidas como componentes principales, que poseen características estadísticas de independencia (con base en el supuesto de normalidad) y no correlación.
+
+El ACP se logra a lo largo de las siguientes fases: generación de nuevas variables, reducción dimensional del espacio de los datos, eliminación de varaibles de poco aporte e interpretación de los componentes resultantes en el contexto del problema del cual se obtuvieron los datos. Estas fases se desarrollan entre las secciones [7](#sec7), [8](#sec8), [9](#sec9) y [10](#sec10).
 
 ### 7.1. Planteamiento del Problema
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda primero establecer el porcentaje de varianza explicado por cada dimensión una vez procesado el ACP; y posteriormente, con base en el autovalor medio o usando un diagrama de sedimentación, decidir cuántos componentes retener. 
 
 ### 7.2. Desarrollo del Análisis {.tabset .tabset-pills}
+La navegación a través de las pestañas muestra que el conjunto de datos, en relación con sus variables numéricas, puede ser representado por un conjuto de variables más pequeño que retiene el $77.05$ $\%$ de la variabilidad del conjunto. En particular:
+
+La **Matriz ACP** muestra seis dimensiones donde solo la primera retiene el $77.05$ $\%$, la siguiente el $10.33$ $\%$ y las demás solo porcentajes con parte entera de una cifra. En este sentido, la representatividad de la combinación lineal que define a la dimensión 1 es significativamente alta en comparación con las demás. Como esta matriz es muda en relación con las variables originales se sigue indagando la identificación de las variables que más contribuyan a la dimensión de valor propio más alto.
+
+La **Matriz de Correlaciones** permite continuar con las descripciones de las combinaciones lineales que conforman a la dimensión de mayor interés: la dimensión 1. Así, esta matriz, como se mostró en la [sección 3.2.](@sec3_2),  ayuda a verificar que la intensidad de las corelaciones es más alta y siempre positiva entre las variables: TOEFL_Score, GRE_Score, CGPA y Chance_of_Admit, asunto esperado en relación con el fenómeno estudiado, por lo tanto, se podría esperar que estas variables participaran en la combinación lineal que define a la dimensión 1.
+
+La pestaña de **Valores y Vectores Propios** muestra estos objetos calculados a partir de la matriz de correlaciones del conjunto de datos. En este sentido, se garantiza que la suma de los valores propios sea igual a la dimensión de dicha matriz y a la variabilidad total del conjunto, por lo cual las proporciones de retención de variabilidad son de cálculo inmediato. Además, la matriz de vectores propios define para cada componente, en relación con cada variable del conjunto de datos, los coeficientes de la combinación lineal que la conforman, por ejemplo, con un ajuste a dos cifras decimales, la componente 1 estaría representada por la combinación lineal (donde $G$ es GRE_Score, $T$ es TOEFL_Score, $S$ es SOP, $L$ es LOR, $CG$ es CGPA y $CA$ es Chance_of_Admit y además, son variables estandarizadas):$$Componente_1 = 0.41*G+0.42*T+0.39*S+0.37*L+0.44*CG+0.43*CA$$
+
+El **Gráfico de Cattell** 
+
+El **Gráfico de Cattell-Kaiser**
 
 #### Matriz ACP
 ```{r Matriz_ACP, fig.align = 'center'}
-head(get_eigenvalue(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F)))
+get_eigenvalue(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F))
 ```
 
 #### Matriz de Correlaciones
@@ -273,8 +290,8 @@ round(cor(Admission_Dataset[,-c(1,2,8,9)]),2)
 
 #### Valores y Vectores Propios
 ```{r Valores_y_Vectores_Propios, fig.align = 'center'}
-eigen(cor(Admission_Dataset[,-c(1,2,8,9)]))$values
-eigen(cor(Admission_Dataset[,-c(1,2,8,9)]))$vectors
+princomp(Admission_Dataset[,-c(1,2,8,9)], cor = TRUE)$sdev^2
+princomp(Admission_Dataset[,-c(1,2,8,9)], cor = TRUE)$loadings[ ,1:6]
 ```
 
 #### Gráfico de Cattell
@@ -287,62 +304,76 @@ fviz_eig(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = TRUE, graph = F), add
 scree(Admission_Dataset[,-c(1,2,8,9)],factors = FALSE, pc = TRUE, main ="Gráfico Cattell-Kaiser")
 ```
 
+<a name="sec8"></a>
+
 ## **8. Calidad de Representación**
 
 ### 8.1. Planteamiento del Problema
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) 
 
 ### 8.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
 #### Matriz de Representación COS2
 ```{r Matriz_de_Repressentacion_COS2, fig.align = 'center'}
-(get_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F)))$cos2
+(get_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F)))$cos2
 ```
 
 #### Calidad de la Representación COS2
 ```{r Calidad_de_la_Representacion, fig.align = 'center'}
-fviz_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), col.var="cos2", gradient.cols=c("#00AFBB","#E7B800","#FC4E07"), repel = TRUE)
+fviz_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), col.var="cos2", gradient.cols=c("#00AFBB","#E7B800","#FC4E07"), repel = TRUE)
 ```
 
 #### Coordenadas Individuales
 ```{r Coordenadas_Registros, fig.align = 'center'}
-(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F))$ind$coord
+head((PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F))$ind$coord, n = 23L)
 ```
+
+<a name="sec9"></a>
 
 ## **9. Contribuciones**
 
 ### 9.1. Planteamiento del Problema
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) 
 
 ### 9.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
 #### Matriz de Contribuciones
 ```{r Matriz_de_Contribuciones, fig.align = 'center'}
-(get_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F)))$contrib
+(get_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F)))$contrib
 ```
 
 #### Contribuciones a D1
 ```{r Contribuciones_DIM_1, fig.align = 'center'}
-fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 1, top = 10)
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), choice = "var", axes = 1, top = 10)
 ```
 
 #### Contribuciones a D2
 ```{r Contribuciones_DIM_2, fig.align = 'center'}
-fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 2, top = 10)
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), choice = "var", axes = 2, top = 10)
 ```
 
 #### Contribuciones a D3
 ```{r Contribuciones_DIM_3, fig.align = 'center'}
-fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 3, top = 10)
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), choice = "var", axes = 3, top = 10)
 ```
 
 #### Contribuciones a D4
 ```{r Contribuciones_DIM_4, fig.align = 'center'}
-fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 4, top = 10)
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), choice = "var", axes = 4, top = 10)
 ```
 
 #### Contribuciones a D5
 ```{r Contribuciones_DIM_5, fig.align = 'center'}
-fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F), choice = "var", axes = 5, top = 10)
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), choice = "var", axes = 5, top = 10)
 ```
+
+#### Contribuciones a D6
+```{r Contribuciones_DIM_6, fig.align = 'center'}
+fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), choice = "var", axes = 6, top = 10)
+```
+
+
+<a name="sec10"></a>
 
 ## **10. Interpretación de Componentes**
 
@@ -354,7 +385,7 @@ fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, gr
 ```{r Biplot_de_Variables_y_Registros_Total, fig.align = 'center'}
 data_UR <- Admission_Dataset_Initial[,-c(1,2,8)]
 data_All <- cbind(Admission_Dataset_Initial[,-c(1,2,8,9)], data_UR$University_Rating)
-fviz_pca_biplot(PCA(data_All, ncp = 5, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
+fviz_pca_biplot(PCA(data_All, ncp = 6, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
 ```
 
 #### Biplot de Variables y Registros [Subconjunto]
@@ -363,7 +394,7 @@ set.seed(780728)
 data_100_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),100),-c(1,2,8)]
 set.seed(780728)
 data_100 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),100),-c(1,2,8,9)], data_100_UR$University_Rating)
-fviz_pca_biplot(PCA(data_100, ncp = 5, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
+fviz_pca_biplot(PCA(data_100, ncp = 6, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
 ```
 
 ## **Conclusiones**
