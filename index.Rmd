@@ -318,15 +318,13 @@ Al retomar el trabajo de [@AEDMDiaz-Morales1ed] se verifica que, una vez reducid
 Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar la calidad de representación de las variables respecto a la cantidad de dimensiones calculadas que retienen la mayor cantidad de variabilidad, ver la [sección 7](#sec7).
 
 ### 8.2. Desarrollo del Análisis {.tabset .tabset-pills}
-La navegación a través de las pestañas muestra que la reducción de la dimensionalidad del conjunto de datos conduce a calidades de representación altas en términos de la escala de contribuciones relativas basada en un cociente de proyecciones con propiedades aditivas y de respuesta en escala continua entre $0$ y $1$. Así, en particular:
+La navegación a través de las pestañas muestra que la reducción de la dimensionalidad del conjunto de datos conduce analizar las calidades de representación en términos de la escala de contribuciones relativas basada en un cociente de proyecciones con propiedades aditivas y de respuesta en escala continua entre $0$ y $1$. Así, en particular:
 
-El **Círculo de Correlaciones**...
+El **Círculo de Correlaciones** muestra que se puede concebir de una compenente tipo tamaño en el sentido de que la dimensión 1 muestra en él una correlación positiva con las seis variables de interés. Por otro lado, la dimensión 2 contrapone a las variables **LOR** y **SOP** con las demás. Otro aspecto por resaltar es la correlación mostrada entre pares de variables, que en términos del fenómeno estudiado conservan su naturaleza correlacional esperada hasta este punto del análisis. Un ejemplo resaltable es el par **SOP** y **LOR** que, en cierto sentido, están influidas por la subjetividad, véase la [sección 2](#sec2).
 
-La **Matriz de Representación**...
+La **Matriz de Representación**, por otro lado, muestra valores significativamente cercanos a 1 del cociente de proyecciones coseno cuadrado en relación con la dimensión 1. En este sentido, los puntos proyectados están altamente asociados con este componente. Así, la estaña que muestra la **Calidad de Representación** indica en su escala un piso alto de $0.84$ de esta manera las calidades de representación, en relación con la componente 1, están encabezadas por **CGPA** y cierran con **SOP**. Cabe aclarar que la dimensión 2 sostiene una mejor representación de **LOR** que de **SOP**, por lo tanto, la calidad de representación de la primera en relación con la dimensión 1 se ve afectada.
 
-La **Calidad de Representación**
-
-Las **Coordenadas Individuales**...
+Por último, las **Coordenadas Individuales** ayudan, aunque de manera menos digestiva, a identificar a nivel de observaciones a los perfiles de los registros, en este caso estudiantes, en relación con las, por lo menos, dimensiones más importantes de retención de variabilidad: las componentes 1 y 2. Por ejemplo, al observar los registros 1, 9, 23, se manifiestan las semejanzas entre 1 y 23 en oposición de ambos con 9, incluso al considerar a la variable peor representada **SOP**.
 
 #### Círculo de Correlaciones
 ```{r Circulo_de_Correlaciones, fig.align = 'center'}
@@ -353,9 +351,10 @@ head((PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F
 ## **9. Contribuciones**
 
 ### 9.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la [sección 2](#sec2) 
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar las contribuciones que hace cada variable a la construcción de cada componente.
 
 ### 9.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
 
 #### Matriz de Contribuciones
 ```{r Matriz_de_Contribuciones, fig.align = 'center'}
