@@ -411,19 +411,19 @@ fviz_pca_biplot(PCA(data_All, ncp = 6, scale.unit = TRUE, graph = F, quali.sup =
 #### Coordenadas Individuales [Subconjunto]
 ```{r Coordenadas_Individuales_Subconjunto, fig.align = 'center'}
 set.seed(780728)
-data_50_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),50),-c(1,2,8)]
+data_61_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),61),-c(1,2,8)]
 set.seed(780728)
-data_50 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),50),-c(1,2,8,9)], data_50_UR$University_Rating)
-head(PCA(data_50, ncp = 6, scale.unit = T, graph = F, quali.sup = 7)$ind$coord, n = 50L)
+data_61 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),61),-c(1,2,8,9)], data_61_UR$University_Rating)
+head(PCA(data_61, ncp = 6, scale.unit = T, graph = F, quali.sup = 7)$ind$coord, n = 61L)
 ```
 
 #### Biplot de Variables y Registros [Subconjunto]
 ```{r Biplot_de_Variables_y_Registros_Subconjunto, fig.align = 'center'}
 set.seed(780728)
-data_50_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),50),-c(1,2,8)]
+data_61_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),61),-c(1,2,8)]
 set.seed(780728)
-data_50 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),50),-c(1,2,8,9)], data_50_UR$University_Rating)
-fviz_pca_biplot(PCA(data_50, ncp = 6, scale.unit = T, graph = F, quali.sup = 7), axes = c(1, 2), repel = T, habillage = 7)
+data_61 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),61),-c(1,2,8,9)], data_61_UR$University_Rating)
+fviz_pca_biplot(PCA(data_61, ncp = 6, scale.unit = T, graph = F, quali.sup = 7), axes = c(1, 2), repel = T, habillage = 7)
 ```
 
 ## **Conclusiones**
