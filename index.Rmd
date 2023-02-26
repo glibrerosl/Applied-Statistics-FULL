@@ -301,7 +301,7 @@ corrplot::corrplot(cor(princomp(Admission_Dataset[,-c(1,2,8,9)], cor = TRUE)$sco
 
 #### Gráfico de Cattell
 ```{r Grafico_de_Cattell, fig.align = 'center'}
-fviz_eig(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = TRUE, graph = F), addlabels = TRUE, ylim=c(0,90), main = "")
+fviz_eig(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = T, graph = F), addlabels = T, ylim=c(0,90), main = "")
 ```
 
 #### Gráfico de Cattell-Kaiser
@@ -312,19 +312,33 @@ scree(Admission_Dataset[,-c(1,2,8,9)],factors = FALSE, pc = TRUE, main ="")
 <a name="sec8"></a>
 
 ## **8. Calidad de Representación**
-Al retomar el trabajo de [@AEDMDiaz-Morales1ed]
+Al retomar el trabajo de [@AEDMDiaz-Morales1ed] se verifica que, una vez reducida la dimensionalidad del conjunto de datos y entendido que sus variables (estandarizadas) están representadas gráficamente por proyecciones de la hiperesfera de correlaciones, es necesario iniciar la interpretación de componentes a partir de dichas correlaciones, para luego la calidad de sus representaciones dada la reducción dimensional del conjunto de datos en términos de sus variables.
 
 ### 8.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar la calidad de representación de las variables respecto a todas las dimensiones calculadas en la [sección 7](#sec7).
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar la calidad de representación de las variables respecto a la cantidad de dimensiones calculadas que retienen la mayor cantidad de variabilidad, ver la [sección 7](#sec7).
 
 ### 8.2. Desarrollo del Análisis {.tabset .tabset-pills}
+La navegación a través de las pestañas muestra que la reducción de la dimensionalidad del conjunto de datos conduce a calidades de representación altas en términos de la escala de contribuciones relativas basada en un cociente de proyecciones con propiedades aditivas y de respuesta en escala continua entre $0$ y $1$. Así, en particular:
 
-#### Matriz de Representación COS2
+El **Círculo de Correlaciones**...
+
+La **Matriz de Representación**...
+
+La **Calidad de Representación**
+
+Las **Coordenadas Individuales**...
+
+#### Círculo de Correlaciones
+```{r Circulo_de_Correlaciones, fig.align = 'center'}
+fviz_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = T, graph = F),col.var="#3B83BD", repel = T, col.circle = "#CDCDCD", ggtheme = theme_bw())
+```
+
+#### Matriz de Representación
 ```{r Matriz_de_Repressentacion_COS2, fig.align = 'center'}
 (get_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F)))$cos2
 ```
 
-#### Calidad de la Representación COS2
+#### Calidad de Representación
 ```{r Calidad_de_la_Representacion, fig.align = 'center'}
 fviz_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), col.var="cos2", gradient.cols=c("#00AFBB","#E7B800","#FC4E07"), repel = TRUE)
 ```
@@ -332,7 +346,6 @@ fviz_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, gr
 #### Coordenadas Individuales
 ```{r Coordenadas_Registros, fig.align = 'center'}
 head((PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F))$ind$coord, n = 23L)
-head(princomp(Admission_Dataset[,-c(1,2,8,9)], cor = TRUE)$scores, n = 37L)
 ```
 
 <a name="sec9"></a>
@@ -395,13 +408,22 @@ data_All <- cbind(Admission_Dataset_Initial[,-c(1,2,8,9)], data_UR$University_Ra
 fviz_pca_biplot(PCA(data_All, ncp = 6, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
 ```
 
+#### Coordenadas Individuales [Subconjunto]
+```{r Coordenadas_Individuales_Subconjunto, fig.align = 'center'}
+set.seed(780728)
+data_50_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),50),-c(1,2,8)]
+set.seed(780728)
+data_50 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),50),-c(1,2,8,9)], data_50_UR$University_Rating)
+head(PCA(data_50, ncp = 6, scale.unit = T, graph = F, quali.sup = 7)$ind$coord, n = 50L)
+```
+
 #### Biplot de Variables y Registros [Subconjunto]
 ```{r Biplot_de_Variables_y_Registros_Subconjunto, fig.align = 'center'}
 set.seed(780728)
-data_100_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),100),-c(1,2,8)]
+data_50_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),50),-c(1,2,8)]
 set.seed(780728)
-data_100 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),100),-c(1,2,8,9)], data_100_UR$University_Rating)
-fviz_pca_biplot(PCA(data_100, ncp = 6, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
+data_50 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),50),-c(1,2,8,9)], data_50_UR$University_Rating)
+fviz_pca_biplot(PCA(data_50, ncp = 6, scale.unit = T, graph = F, quali.sup = 7), axes = c(1, 2), repel = T, habillage = 7)
 ```
 
 ## **Conclusiones**
