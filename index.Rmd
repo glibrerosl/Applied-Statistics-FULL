@@ -349,12 +349,29 @@ head((PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F
 <a name="sec9"></a>
 
 ## **9. Contribuciones**
+Según el trabajo de [@AEDMDiaz-Morales1ed] la interpretación de resultados está vinculada con el cálculo de coordenadas, contribuciones, cosenos cuadrados, etc, por lo tanto, la conceptualización de las variables debe ser clara para establecerla con la mayor claridad posible, es decir, los datos deben ponerse en contexto. En este sentido, la contribución de una variable a una componente allana el camino de la interpretación de resultados. Esto se hace en este apartado en el sentido de calcular lor aportes con que cada variable participa para definir a cada componente generada.
 
 ### 9.1. Planteamiento del Problema
 Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar las contribuciones que hace cada variable a la construcción de cada componente.
 
 ### 9.2. Desarrollo del Análisis {.tabset .tabset-pills}
+La navegación a través de las pestañas permite reconocer en representaciones numéricas y gráficas las contribuciones de las variables del conjunto de datos a la construcción de cada componente. Así, se entiende cuánta variabilidad explica cada variable de la variabilidad total de la componente con que esté involucrada. en particular:
 
+La **Matriz de Contribuciones** muestra en términos relativos la retención de variabilidad que tiene cada variable en la construcción de cada componente. Así, los diagramas de barras visualizados a través de las pestañas desde **Contribuciones a D1** hasta **Contribuciones a D6**, muestran con base en diagramas de barras las respectivas contribuciones que hacen las variables para explicar la varianzar en cada componente; además, cada gráfico incluye una línea que ayuda a identificar la contribución media, esto ayuda a identificar con mayor facilidad a las variables que contribuyen con mayor explicación de variabilidad de los componentes que conforman.
+
+En **Contribuciones a D1** se visualiza que las variables por enciama de la contribución media: **CGPA**, **Chance_of_Admit**, **TOEFL_Score** y **GRE_Score** retienen aproximadamente el $71.72$ $\%$ de la variabilidad del componente 1.
+
+En **Contribuciones a D2** se visualiza que las variables por enciama de la contribución media: **LOR** y **SOP** retienen aproximadamente el $67.87$ $\%$ de la variabilidad del componente 2.
+
+En **Contribuciones a D3** se visualiza que las variables por enciama de la contribución media: **SOP** y **LOR** retienen aproximadamente el $81.37$ $\%$ de la variabilidad del componente 3.
+
+En **Contribuciones a D4** se visualiza que las variables por enciama de la contribución media: **Chance_of_Admit** y **TOEFL_Score** retienen aproximadamente el $57.76$ $\%$ de la variabilidad del componente 4.
+
+En **Contribuciones a D5** se visualiza que las variables por enciama de la contribución media: **GRE_Score** y **TOEFL_Score** retienen aproximadamente el $95.51$ $\%$ de la variabilidad del componente 5.
+
+Por último, en **Contribuciones a D6** se visualiza que las variables por enciama de la contribución media: **CGPA** y **Chance_of_Admit** retienen aproximadamente el $96.06$ $\%$ de la variabilidad del componente 6.
+
+Con los datos procesados hasta ahora se puede proceder con la intepretación de los componentes.
 
 #### Matriz de Contribuciones
 ```{r Matriz_de_Contribuciones, fig.align = 'center'}
@@ -390,7 +407,6 @@ fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, gr
 ```{r Contribuciones_DIM_6, fig.align = 'center'}
 fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F), choice = "var", axes = 6, top = 10)
 ```
-
 
 <a name="sec10"></a>
 
