@@ -272,15 +272,13 @@ La **Matriz ACP** muestra seis dimensiones donde solo la primera retiene el $77.
 
 La **Matriz de Correlaciones** permite continuar con las descripciones de las combinaciones lineales que conforman a la dimensión de mayor interés: la dimensión 1. Así, esta matriz, como se mostró en la [sección 3.2.](@sec3_2),  ayuda a verificar que la intensidad de las corelaciones es más alta y siempre positiva entre las variables: TOEFL_Score, GRE_Score, CGPA y Chance_of_Admit, asunto esperado en relación con el fenómeno estudiado, por lo tanto, se podría esperar que estas variables participaran en la combinación lineal que define a la dimensión 1.
 
-La pestaña de **Valores y Vectores Propios** muestra estos objetos calculados a partir de la matriz de correlaciones del conjunto de datos. En este sentido, se garantiza que la suma de los valores propios sea igual a la dimensión de dicha matriz y a la variabilidad total del conjunto, por lo cual las proporciones de retención de variabilidad son de cálculo inmediato. Además, la matriz de vectores propios define para cada componente, en relación con cada variable del conjunto de datos, los coeficientes de la combinación lineal que la conforman, por ejemplo, con un ajuste a dos cifras decimales, la componente 1 estaría representada por la combinación lineal (donde $G$ es GRE_Score, $T$ es TOEFL_Score, $S$ es SOP, $L$ es LOR, $CG$ es CGPA y $CA$ es Chance_of_Admit y además, son variables estandarizadas):$$Componente_1 = 0.41*G+0.42*T+0.39*S+0.37*L+0.44*CG+0.43*CA$$
+La pestaña de **Valores y Vectores Propios** muestra estos objetos calculados a partir de la matriz de correlaciones del conjunto de datos. En este sentido, se garantiza que la suma de los valores propios sea igual a la dimensión de dicha matriz y a la variabilidad total del conjunto, por lo cual las proporciones de retención de variabilidad son de cálculo inmediato. Además, la matriz de vectores propios define para cada componente, en relación con cada variable del conjunto de datos, los coeficientes de la combinación lineal que la conforman, por ejemplo, con un ajuste a dos cifras decimales, la componente 1 estaría representada por la combinación lineal (donde $G$ es GRE_Score, $T$ es TOEFL_Score, $S$ es SOP, $L$ es LOR, $CG$ es CGPA y $CA$ es Chance_of_Admit y además, son variables estandarizadas):$$Componente_1 = 0.41*G+0.42*T+0.39*S+0.37*L+0.44*CG+0.43*CA$$Hasta este punto, se puede observar que se dispone de un número de dimensiones igual al número de variables tratadas, con la salvedad que las variables nuevas son incorreladas entre sí, ver la pestaña **Correlaciones Comparadas**.
 
-El **Gráfico de Cattell** 
-
-El **Gráfico de Cattell-Kaiser**
+Por último, el **Gráfico de Cattell** y el **Gráfico de Cattell-Kaiser**, de codo y sedimentación, inducen a la elección de una componente en la reducción de dimensión que retiene la cantidad de variabilidad suficiente para tratar el problema. Sin embargo, debe resaltarse que se propone elegir con base en criterios más usados, a cambio de criterios de aceptación universal. El **Gráfico de Cattell** muestra que los cambios en la pendiente indican que la capacidad explicativa de la dimensión 1 es alta comparada con el resto. Así, el de **Cattell-Kaiser** al conjugar el instrumento gráfico anterior con el criterio de Kaiser en la misma gráfica apoya que la cantidad de dimensiones suficientes por retener es una, aclarando que esta elección retenga un porcentaje de variabilidad adecuado para estudiar el problema.
 
 #### Matriz ACP
 ```{r Matriz_ACP, fig.align = 'center'}
-get_eigenvalue(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 5, scale.unit = TRUE, graph = F))
+get_eigenvalue(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F))
 ```
 
 #### Matriz de Correlaciones
@@ -294,22 +292,30 @@ princomp(Admission_Dataset[,-c(1,2,8,9)], cor = TRUE)$sdev^2
 princomp(Admission_Dataset[,-c(1,2,8,9)], cor = TRUE)$loadings[ ,1:6]
 ```
 
+#### Correlaciones Comparadas
+```{r Correlaciones_Comparadas, fig.align='center'}
+par(mfrow=c(1,2))
+corrplot::corrplot(cor(Admission_Dataset[,-c(1,2,8,9)]), method = "color", type = "upper", number.cex = 0.4)
+corrplot::corrplot(cor(princomp(Admission_Dataset[,-c(1,2,8,9)], cor = TRUE)$scores), method = "color", type = "upper", number.cex = 0.4)
+```
+
 #### Gráfico de Cattell
 ```{r Grafico_de_Cattell, fig.align = 'center'}
-fviz_eig(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = TRUE, graph = F), addlabels = TRUE, ylim=c(0,90))
+fviz_eig(PCA(Admission_Dataset[,-c(1,2,8,9)], scale.unit = TRUE, graph = F), addlabels = TRUE, ylim=c(0,90), main = "")
 ```
 
 #### Gráfico de Cattell-Kaiser
 ```{r Grafico_de_Cattell_Kaiser, fig.align = 'center'}
-scree(Admission_Dataset[,-c(1,2,8,9)],factors = FALSE, pc = TRUE, main ="Gráfico Cattell-Kaiser")
+scree(Admission_Dataset[,-c(1,2,8,9)],factors = FALSE, pc = TRUE, main ="")
 ```
 
 <a name="sec8"></a>
 
 ## **8. Calidad de Representación**
+Al retomar el trabajo de [@AEDMDiaz-Morales1ed]
 
 ### 8.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la [sección 2](#sec2) 
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar la calidad de representación de las variables respecto a todas las dimensiones calculadas en la [sección 7](#sec7).
 
 ### 8.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
@@ -326,6 +332,7 @@ fviz_pca_var(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, gr
 #### Coordenadas Individuales
 ```{r Coordenadas_Registros, fig.align = 'center'}
 head((PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F))$ind$coord, n = 23L)
+head(princomp(Admission_Dataset[,-c(1,2,8,9)], cor = TRUE)$scores, n = 37L)
 ```
 
 <a name="sec9"></a>
