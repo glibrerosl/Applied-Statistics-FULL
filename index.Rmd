@@ -411,19 +411,39 @@ fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, gr
 <a name="sec10"></a>
 
 ## **10. Interpretación de Componentes**
+Con base en [@AEDMDiaz-Morales1ed] se sabe que a partir de las coordenadas de los registros dimensionalmente reducidos se puede ubicar en
+un plano de factores para efectos de análisis e interpretación. Así, las variables reducidas son las componentes principales que se grafican como ejes en un plano, y los valores que tomen son los puntajes de las componentes. Como bien se explica en el mismo trabajo, las distancias entre los puntos definidos por los puntajes de las componentes tiene un significado relevante al ayudar a establecer semejanzas de perfiles en las observaciones hechas. Sin embargo, los valores semejantes de las variables pueden darse solo en algunas de ellas, sin esperar necesariamente a que suceda en todas. Así, se espera que las distancias en el espacio dimensional original de las observaciones queden bien representadas en el espacio reducido de las componentes.
 
 ### 10.1. Planteamiento del Problema
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda definir e interpretar sus componentes principales.
 
 ### 10.2. Desarrollo del Análisis {.tabset .tabset-pills}
+La navegación a través de las pestañas permite visualizar objetos gráficos y matriciales que, al incluir lo hecho en las secciones anteriores, ayudan a robustecer la interpretación de las componentes calculadas. Como se mostró en la [sección 7](#sec7), la cantidad de componentes seleccionadas se redujo (según el criterio de Kaiser) a una y se estableció que la componente 1 retiene el $77.05$ $\%$ de la variabilidad de los datos. Así, en el círculo de correlaciones de la [sección 8](#sec8) se aprecia que la representación de las variables conjugadas en la componente 1 la configuran como una de tipo tamaño, lo que puede interpretarse como una especie de índice de proporcionalidad directa. Esto también se apoya con base en el hecho de que todas las variables presentan correlaciones con el componente 1 entre $0.62$ y $0.88$, rango considerado de correlación fuerte independientemente del contexto del fenómeno estudiado. En consecuencia, cuanto mayor sea el valor las variables mayor será el estado de favorabilidad de que el estudiante sea admitido por la univrsidad de su preferencia. Así, dada la naturaleza de las variables esta componente puede representar para un estudiante su **medida de competitividad formativa**. Al respecto:
 
-#### Biplot de Variables y Registros [Total]
-```{r Biplot_de_Variables_y_Registros_Total, fig.align = 'center'}
+Las pestañas **Biplot de Variables y Registros** **Totales** en **UR** (University Rating), **G** (Gender) y **R** (Research), muestran  
+
+#### Biplot de Variables y Registros [Total UR]
+```{r Biplot_de_Variables_y_Registros_Total_UR, fig.align = 'center'}
 data_UR <- Admission_Dataset_Initial[,-c(1,2,8)]
 data_All <- cbind(Admission_Dataset_Initial[,-c(1,2,8,9)], data_UR$University_Rating)
 fviz_pca_biplot(PCA(data_All, ncp = 6, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
 ```
 
-#### Coordenadas Individuales [Subconjunto]
+#### Biplot de Variables y Registros [Total G]
+```{r Biplot_de_Variables_y_Registros_Total_G, fig.align = 'center'}
+data_UR <- Admission_Dataset_Initial[,-c(1,8,9)]
+data_All <- cbind(Admission_Dataset_Initial[,-c(1,2,8,9)], data_UR$Gender)
+fviz_pca_biplot(PCA(data_All, ncp = 6, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
+```
+
+#### Biplot de Variables y Registros [Total R]
+```{r Biplot_de_Variables_y_Registros_Total_R, fig.align = 'center'}
+data_UR <- Admission_Dataset_Initial[,-c(1,2,9)]
+data_All <- cbind(Admission_Dataset_Initial[,-c(1,2,8,9)], data_UR$Research)
+fviz_pca_biplot(PCA(data_All, ncp = 6, scale.unit = TRUE, graph = F, quali.sup = 7), axes = c(1, 2), repel = TRUE, habillage = 7)
+```
+
+#### Coordenadas Individuales [Subconjunto UR]
 ```{r Coordenadas_Individuales_Subconjunto, fig.align = 'center'}
 set.seed(780728)
 data_61_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),61),-c(1,2,8)]
@@ -432,7 +452,7 @@ data_61 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initi
 head(PCA(data_61, ncp = 6, scale.unit = T, graph = F, quali.sup = 7)$ind$coord, n = 61L)
 ```
 
-#### Biplot de Variables y Registros [Subconjunto]
+#### Biplot de Variables y Registros [Subconjunto UR]
 ```{r Biplot_de_Variables_y_Registros_Subconjunto, fig.align = 'center'}
 set.seed(780728)
 data_61_UR <- Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),61),-c(1,2,8)]
