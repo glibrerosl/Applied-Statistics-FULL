@@ -2,7 +2,7 @@
 title: "**Admisión en la Universidad**"
 subtitle: "Estudio de Análisis Multivariado con base en un conjunto de datos de aspirantes extranjeros para ser admitidos en estudios superiores en EE.UU."
 author: "Por: Giancarlo Libreros Londoño::glibrerosl@libertadores.edu.co"
-date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual). *Cierre de Actualizaciones [T1: 14:33 16-feb-2023] [T2: 11:59 26-feb-2023]*."
+date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual). *Cierre de Actualizaciones [T1: 14:33 16-feb-2023] [T2: 11:59 26-feb-2023] [T3: 11:59 5-mar-2023]*."
 output:
   html_document:
     toc: TRUE
@@ -29,6 +29,7 @@ library(reshape2)
 library(FactoMineR)
 library(factoextra)
 library(psych)
+library(FactoClass)
 
 knitr::opts_chunk$set(echo=TRUE)
 
@@ -38,7 +39,8 @@ Admission_Dataset_Initial <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializa
 
 <a name="sec1"></a>
 
-## **Objetivo y Anotaciones [Etapa 1]**
+## **Objetivo y Anotaciones :: Fase 1**
+## **[Descripciones Multivariantes]**
 En términos generales, esta primera etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en un conjunto de datos desde un enfoque de estadística descriptiva multivariante; además, de incluir una prueba estadística de normalidad multivariada sobre ellos.
 
 El conjunto de datos de trabajo es descrito en la [sección 2](#sec2). Cabe anotar que los fundamentos teóricos provienen de notas de clase del curso **Análisis Multivariante** dictado por el profesor Juan Carlos Rubriche Cárdenas para la Especialización en Estadística Aplicada, modalidad virtual (cohorte 2022-4), de la Fundación Universitaria Los Libertadores; y de los libros: Análisis Multivariante Aplicado con R [@AMARAldas-Uriel2ed] de Joaquín Aldás y Ezequiel Uriel, Análisis Multivariante de Joseph Hair, Rolph Anderson, Ronald Tatham y William Black [@AMHair-etAl5ed], Análisis Estadístico de Datos Multivariados de Luis Guillermo Díaz Monroy y Mario Alfonso Morales Rivera [@AEDMDiaz-Morales1ed], Introducción a la Teoría Matemática de las Probabilidades y a la Estadística de Howard Tucker [@ITMPETucker1ed] y Análisis Multivariado: Estadística Multivariada Descriptiva de William David Aristizábal Rodríguez [@AMEDAristizabal2017].
@@ -248,8 +250,9 @@ mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="dh")
 mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="royston")
 ```
 
-## **Objetivo y Anotaciones [Etapa 2]**
-En términos generales, esta segunda etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base el conjunto de datos tratado en la Etapa 1, pero ahora desde un enfoque de análisis de componentes principales sobre las variables cuantitativas, que incluirá: selección, calidad de representación, contribuciones e interpretación.
+## **Objetivo y Anotaciones :: Fase 2**
+## **[Componentes Principales]**
+En términos generales, esta segunda etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en el conjunto de datos tratado en la Etapa 1, pero ahora desde un enfoque de análisis de componentes principales sobre las variables cuantitativas, que incluirá: selección, calidad de representación, contribuciones e interpretación.
 
 Recuérdese que el conjunto de datos de trabajo es descrito en la [sección 2](#sec2) y los referentes teóricos en la [sección 1](#sec1).
 
@@ -263,7 +266,7 @@ Como es mencionado en el trabajo de [@AEDMDiaz-Morales1ed] el Análisis de Compo
 El ACP se logra a lo largo de las siguientes fases: generación de nuevas variables, reducción dimensional del espacio de los datos, eliminación de varaibles de poco aporte e interpretación de los componentes resultantes en el contexto del problema del cual se obtuvieron los datos. Estas fases se desarrollan entre las secciones [7](#sec7), [8](#sec8), [9](#sec9) y [10](#sec10).
 
 ### 7.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda primero establecer el porcentaje de varianza explicado por cada dimensión una vez procesado el ACP; y posteriormente, con base en el autovalor medio o usando un diagrama de sedimentación, decidir cuántos componentes retener. 
+Con base en las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda primero establecer el porcentaje de varianza explicado por cada dimensión una vez procesado el ACP; y posteriormente, con base en el autovalor medio o usando un diagrama de sedimentación, decidir cuántos componentes retener. 
 
 ### 7.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La navegación a través de las pestañas muestra que el conjunto de datos, en relación con sus variables numéricas, puede ser representado por un conjuto de variables más pequeño que retiene el $77.05$ $\%$ de la variabilidad del conjunto. En particular:
@@ -315,7 +318,7 @@ scree(Admission_Dataset[,-c(1,2,8,9)],factors = FALSE, pc = TRUE, main ="")
 Al retomar el trabajo de [@AEDMDiaz-Morales1ed] se verifica que, una vez reducida la dimensionalidad del conjunto de datos y entendido que sus variables (estandarizadas) están representadas gráficamente por proyecciones de la hiperesfera de correlaciones, es necesario iniciar la interpretación de componentes a partir de dichas correlaciones, para luego la calidad de sus representaciones dada la reducción dimensional del conjunto de datos en términos de sus variables.
 
 ### 8.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar la calidad de representación de las variables respecto a la cantidad de dimensiones calculadas que retienen la mayor cantidad de variabilidad, ver la [sección 7](#sec7).
+Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar la calidad de representación de las variables cuantitativas respecto a la cantidad de dimensiones calculadas que retienen la mayor cantidad de variabilidad, ver la [sección 7](#sec7).
 
 ### 8.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La navegación a través de las pestañas muestra que la reducción de la dimensionalidad del conjunto de datos conduce analizar las calidades de representación en términos de la escala de contribuciones relativas basada en un cociente de proyecciones con propiedades aditivas y de respuesta en escala continua entre $0$ y $1$. Así, en particular:
@@ -352,7 +355,7 @@ head((PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, graph = F
 Según el trabajo de [@AEDMDiaz-Morales1ed] la interpretación de resultados está vinculada con el cálculo de coordenadas, contribuciones, cosenos cuadrados, etc, por lo tanto, la conceptualización de las variables debe ser clara para establecerla con la mayor claridad posible, es decir, los datos deben ponerse en contexto. En este sentido, la contribución de una variable a una componente allana el camino de la interpretación de resultados. Esto se hace en este apartado en el sentido de calcular lor aportes con que cada variable participa para definir a cada componente generada.
 
 ### 9.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar las contribuciones que hace cada variable a la construcción de cada componente.
+Con base en las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda determinar las contribuciones que hace cada variable a la construcción de cada componente.
 
 ### 9.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La navegación a través de las pestañas permite reconocer en representaciones numéricas y gráficas las contribuciones de las variables del conjunto de datos a la construcción de cada componente. Así, se entiende cuánta variabilidad explica cada variable de la variabilidad total de la componente con que esté involucrada. en particular:
@@ -410,11 +413,11 @@ fviz_contrib(PCA(Admission_Dataset[,-c(1,2,8,9)], ncp = 6, scale.unit = TRUE, gr
 
 <a name="sec10"></a>
 
-## **10. Interpretación de Componentes**
+## **10. Interpretación**
 Con base en [@AEDMDiaz-Morales1ed] se sabe que a partir de las coordenadas de los registros dimensionalmente reducidos se puede ubicar en un plano de factores para efectos de análisis e interpretación. Así, las variables reducidas son las componentes principales que se grafican como ejes en un plano, y los valores que tomen son los puntajes de las componentes. Como bien se explica en el mismo trabajo, las distancias entre los puntos definidos por los puntajes de las componentes tiene un significado relevante al ayudar a establecer semejanzas de perfiles en las observaciones hechas. Sin embargo, los valores semejantes de las variables pueden darse solo en algunas de ellas, sin esperar necesariamente a que suceda en todas. Así, se espera que las distancias en el espacio dimensional original de las observaciones queden bien representadas en el espacio reducido de las componentes.
 
 ### 10.1. Planteamiento del Problema
-Con base en el conjunto de datos descrito en la [sección 2](#sec2) se demanda definir e interpretar sus componentes principales.
+Con base en las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda definir e interpretar sus componentes principales.
 
 ### 10.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La navegación a través de las pestañas permite visualizar objetos gráficos y matriciales que, al incluir lo hecho en las secciones anteriores, ayudan a robustecer la interpretación de las componentes calculadas. Como se mostró en la [sección 7](#sec7), la cantidad de componentes seleccionadas se redujo (según el criterio de Kaiser) a una y se estableció que la componente 1 retiene el $77.05$ $\%$ de la variabilidad de los datos. Así, en el círculo de correlaciones de la [sección 8](#sec8) se aprecia que la representación de las variables conjugadas en la componente 1 la configuran como una de tipo tamaño, lo que puede interpretarse como una especie de índice de proporcionalidad directa. Esto también se apoya con base en el hecho de que todas las variables presentan calidades de representación entre $0.62$ y $0.88$. En consecuencia, cuanto mayor sea el valor las variables mayor será el estado de favorabilidad de que el estudiante sea admitido por la univrsidad de su preferencia. Así, dada la naturaleza de las variables esta componente puede representar para un estudiante su **medida de competitividad formativa**. Al respecto:
@@ -461,6 +464,121 @@ set.seed(780728)
 data_61 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initial),61),-c(1,2,8,9)], data_61_UR$University_Rating)
 fviz_pca_biplot(PCA(data_61, ncp = 6, scale.unit = T, graph = F, quali.sup = 7), axes = c(1, 2), repel = T, habillage = 7)
 ```
+
+## **Objetivo y Anotaciones :: Fase 3**
+## **[Correspondencias]**
+En términos generales, esta tercera etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en el conjunto de datos tratado en las Etapa 1 y 2, pero ahora desde un enfoque de análisis de correspondencias simples y múltiples sobre las variables cuanlitativas, que incluirá: construcción de tablas de contingencias y disyuntivas completas, calidades de representación, contribuciones e interpretaciones.
+
+Recuérdese que el conjunto de datos de trabajo es descrito en la [sección 2](#sec2) y los referentes teóricos en la [sección 1](#sec1).
+
+Por último, este trabajo fue procesado con `r R.version.string` mediado por RStudio 2022.12.0 Build 353 en una plataforma x86_64-w64-mingw32. Además, por su naturaleza de publicación en línea y para cumplir con el requisito temporal de entrega, será actualizado, como máximo, hasta las 11:59 p.m. del domingo 5 de marzo de 2023.
+
+## **11. Correspondencias Simples**
+
+### 11.1. Planteamiento del Problema
+Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda...
+
+### 11.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
+#### Tablas de Contingencia
+```{r Tablas_de_Contingencia, fig.align = 'center'}
+addmargins(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research))
+addmargins(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating))
+addmargins(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))
+```
+
+#### Tablas de Probabilidades
+```{r Tablas_de_Probabilidades, fig.align = 'center'}
+addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research))*100)
+addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating))*100)
+addmargins(prop.table(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))*100)
+```
+
+#### Tablas de Frecuencias Condicionadas
+```{r Tablas_de_Frecuencias_Condicionadas, fig.align = 'center'}
+addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research), 1)*100, 2)
+addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research), 2)*100, 1)
+
+addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating), 1)*100, 2)
+addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating), 2)*100, 1)
+
+addmargins(prop.table(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), 1)*100, 2)
+addmargins(prop.table(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), 2)*100, 1)
+```
+
+#### Gráficos de Perfiles
+```{r Graficos_de_Perfiles, fig.align = 'center'}
+plotct(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research),"row")
+plotct(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research),"col")
+
+plotct(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating),"row")
+plotct(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating),"col")
+
+plotct(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating),"row")
+plotct(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating),"col")
+```
+
+#### Pruebas de Correspondencias
+```{r Pruebas_de_Correspondencia, fig.align = 'center'}
+chisq.test(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research))
+chisq.test(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating))
+chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))
+```
+
+#### Contingencias y Residuales [R-UR]
+```{r Contingencias_y_Residuales, fig.align = 'center'}
+chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$observed
+chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$expected 
+chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$residuals
+```
+
+#### Contribuciones [R-UR]
+```{r Contribuciones_R-UR, fig.align = 'center'}
+chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$residuals^2/chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$statistic*100
+```
+
+#### Biplot Correspondencia Simple [R-UR]
+```{r Biplot_Correspondencia_Simple_R-UR, fig.align = 'center'}
+CA(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), graph = FALSE)$eig
+#fviz_ca_biplot(CA(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), graph = FALSE), repel = TRUE)
+```
+
+## **12. Correspondencias Múltiples**
+
+### 12.1. Planteamiento del Problema
+Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda...
+
+### 12.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
+#### ACM
+```{r}
+MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE)
+```
+
+#### Biplot ACM
+```{r}
+fviz_mca_biplot(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), repel = TRUE)
+```
+
+#### Calidad de Representación
+```{r}
+fviz_mca_var(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), col.var ="cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
+```
+
+#### Contribuciones
+```{r}
+fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), choice = "var", axes = 1, top = 15)
+fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), choice = "var", axes = 2, top = 15)
+fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), choice = "var", axes = 3, top = 15)
+fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), choice = "var", axes = 4, top = 15)
+fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), choice = "var", axes = 5, top = 15)
+```
+
+#### Biplot con Contribuciones
+```{r}
+fviz_mca_var(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), col.var ="contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
+```
+
 
 ## **Conclusiones**
 Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de lo obtenido.
