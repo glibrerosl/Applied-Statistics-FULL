@@ -273,7 +273,7 @@ La navegación a través de las pestañas muestra que el conjunto de datos, en r
 
 La **Matriz ACP** muestra seis dimensiones donde solo la primera retiene el $77.05$ $\%$, la siguiente el $10.33$ $\%$ y las demás solo porcentajes con parte entera de una cifra. En este sentido, la representatividad de la combinación lineal que define a la dimensión 1 es significativamente alta en comparación con las demás. Como esta matriz es muda en relación con las variables originales se sigue indagando la identificación de las variables que más contribuyan a la dimensión de valor propio más alto.
 
-La **Matriz de Correlaciones** permite continuar con las descripciones de las combinaciones lineales que conforman a la dimensión de mayor interés: la dimensión 1. Así, esta matriz, como se mostró en la [sección 3.2.](@sec3_2),  ayuda a verificar que la intensidad de las corelaciones es más alta y siempre positiva entre las variables: TOEFL_Score, GRE_Score, CGPA y Chance_of_Admit, asunto esperado en relación con el fenómeno estudiado, por lo tanto, se podría esperar que estas variables participaran en la combinación lineal que define a la dimensión 1.
+La **Matriz de Correlaciones** permite continuar con las descripciones de las combinaciones lineales que conforman a la dimensión de mayor interés: la dimensión 1. Así, esta matriz, como se mostró en la [sección 3.2.](#sec3_2),  ayuda a verificar que la intensidad de las corelaciones es más alta y siempre positiva entre las variables: TOEFL_Score, GRE_Score, CGPA y Chance_of_Admit, asunto esperado en relación con el fenómeno estudiado, por lo tanto, se podría esperar que estas variables participaran en la combinación lineal que define a la dimensión 1.
 
 La pestaña de **Valores y Vectores Propios** muestra estos objetos calculados a partir de la matriz de correlaciones del conjunto de datos. En este sentido, se garantiza que la suma de los valores propios sea igual a la dimensión de dicha matriz y a la variabilidad total del conjunto, por lo cual las proporciones de retención de variabilidad son de cálculo inmediato. Además, la matriz de vectores propios define para cada componente, en relación con cada variable del conjunto de datos, los coeficientes de la combinación lineal que la conforman, por ejemplo, con un ajuste a dos cifras decimales, la componente 1 estaría representada por la combinación lineal (donde $G$ es GRE_Score, $T$ es TOEFL_Score, $S$ es SOP, $L$ es LOR, $CG$ es CGPA y $CA$ es Chance_of_Admit y además, son variables estandarizadas):$$Componente_1 = 0.41*G+0.42*T+0.39*S+0.37*L+0.44*CG+0.43*CA$$Hasta este punto, se puede observar que se dispone de un número de dimensiones igual al número de variables tratadas, con la salvedad que las variables nuevas son incorreladas entre sí, ver la pestaña **Correlaciones Comparadas**.
 
@@ -473,10 +473,15 @@ Recuérdese que el conjunto de datos de trabajo es descrito en la [sección 2](#
 
 Por último, este trabajo fue procesado con `r R.version.string` mediado por RStudio 2022.12.0 Build 353 en una plataforma x86_64-w64-mingw32. Además, por su naturaleza de publicación en línea y para cumplir con el requisito temporal de entrega, será actualizado, como máximo, hasta las 11:59 p.m. del domingo 5 de marzo de 2023.
 
+<a name="sec11"></a>
+
 ## **11. Correspondencias Simples**
+Con base en el trabajo de [@AMARAldas-Uriel2ed] se sabe que el análisis de correspondencias simple (ACS) busca representar en un espacio multidimensional reducido la relación que exista entre las categorías de un par de variables categóricas. En este sentido, el ACS muestra las distancia entre los niveles de dos variables categóricas y, en consecuencia, ayuda a visualizar tablas de contingencia. Además, se establece que el número máximo de dimensiones que expliquen la asociación entre variables fila y columna es igual a uno menos el menor número de categorías de alguna de las variables involucradas. En consecuencia, el análisis de correspondencias permite describir la proximidad existente entre los perfiles de los objetos observados. Además, el ACS, que basa sus cálculos en tablas de contingencia, puede extenderse a más de dos variables categóricas, conociéndose como anáslisis de correspondencias múltiples (ACM), con base en una objeto llamado tabla disyuntiva completa.
+
+Esta sección trata el análisis de correspondecias simple con base en pares de variables categóricas del conjunto de datos descrito en la [sección 2](#sec2). Complementariamente, la [sección 12](#sec12) muestra el análisis de correspondencias múltiples con base en las varaibles categóricas del mismo conjunto de datos.
 
 ### 11.1. Planteamiento del Problema
-Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda...
+Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda desarrollar el análisis de correspondencias, en principio simple, apoyado en tablas de contingencia y de frecuencias relativas y gráficos de perfiles y de puntos superpuestos en el primer plano factorial. 
 
 ### 11.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
@@ -543,6 +548,8 @@ CA(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$Universit
 #fviz_ca_biplot(CA(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), graph = FALSE), repel = TRUE)
 ```
 
+<a name="sec12"></a>
+
 ## **12. Correspondencias Múltiples**
 
 ### 12.1. Planteamiento del Problema
@@ -551,22 +558,22 @@ Con base en las variables cualitativas del conjunto de datos descrito en la [sec
 ### 12.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
 #### ACM
-```{r}
-MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE)
+```{r ACM, fig.align = 'center'}
+MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE)$eig
 ```
 
 #### Biplot ACM
-```{r}
+```{r Biplot_ACM, fig.align = 'center'}
 fviz_mca_biplot(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), repel = TRUE)
 ```
 
 #### Calidad de Representación
-```{r}
+```{r Calidad_de_Representacion_ACM, fig.align = 'center'}
 fviz_mca_var(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), col.var ="cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
 ```
 
 #### Contribuciones
-```{r}
+```{r Contribuciones_ACM, fig.align = 'center'}
 fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), choice = "var", axes = 1, top = 15)
 fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), choice = "var", axes = 2, top = 15)
 fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), choice = "var", axes = 3, top = 15)
@@ -575,7 +582,7 @@ fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = F
 ```
 
 #### Biplot con Contribuciones
-```{r}
+```{r Biplot_con_Contribuciones_ACM, fig.align = 'center'}
 fviz_mca_var(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), col.var ="contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
 ```
 
