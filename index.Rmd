@@ -484,6 +484,9 @@ Esta sección trata el análisis de correspondecias simple con base en pares de 
 Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda desarrollar el análisis de correspondencias, en principio simple, apoyado en tablas de contingencia y de frecuencias relativas y gráficos de perfiles y de puntos superpuestos en el primer plano factorial. 
 
 ### 11.2. Desarrollo del Análisis {.tabset .tabset-pills}
+La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a robustecer la interpretación del análisis de correspondencias simple (binario) entre cada par de varaibles categóricas del conjunto de datos: **Gender**, **Research** y **University_Rating**. Por ser baja la cantidad de variables categóricas se trabaja el ACS sobre las tres combinaciones posibles.
+
+Con base en la pestaña **Tablas de Contingencia** se hacen las siguientes lecturas de ejemplo: 
 
 #### Tablas de Contingencia
 ```{r Tablas_de_Contingencia, fig.align = 'center'}
