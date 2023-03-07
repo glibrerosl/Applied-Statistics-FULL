@@ -486,39 +486,43 @@ Con base en las variables cualitativas del conjunto de datos descrito en la [sec
 ### 11.2. Desarrollo del Análisis {.tabset .tabset-pills}
 La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a robustecer la interpretación del análisis de correspondencias simple (binario) entre cada par de varaibles categóricas del conjunto de datos: **Gender**, **Research** y **University_Rating**. Por ser baja la cantidad de variables categóricas se trabaja el ACS sobre las tres combinaciones posibles.
 
-Con base en la pestaña **Tablas de Contingencia** se hacen las siguientes lecturas de ejemplo: en la tabla de contingencia **Gender** vs. **Research** se encontró que 80 estudiantes de un total de 151 de sexo femenino adjuntaron evidencias de participación en actividades de investigación; además, de los 181 estudiantes que no argumentaron investigación, de un total de 400 postulados, 71 son de sexo femenino y 110 de sexo masculino. En la tabla de contingencia **Gender** vs. **University_Rating** se calculó que 14 estudiantes de un total de 249 de sexo masculino presentaron aspiraciones de ingreso a unna universidad de una estrella; además, de los 60 estudiantes que presentaron solicitudes de ingreso a universidades de cinco estrellas, 23 eran de sexo femenino y 37 de sexo masculino. Por último, en la tabla de contingencia **Research** vs. **University_Rating** se puede determinar que 59 estudiantes, de un total de 219, que presentaron evidencias de haber participado en procesos de investigación, presentaron sus aspiraciones de ingreso en universidades de cuatro estrellas; además, 75 estudiantes, de un total de 107, que se postularon en universidades de dos estrellas, lo hicieron sin evidenciar participación en procesos de investigación.
+La pestaña **AC Parejas Totales** agrupa los cálculos para todas las combinaciones de parejas de variables. En particular, en **Contingencias** se hacen las siguientes lecturas de ejemplo de las tablas de contingencias: en la tabla de contingencias **Gender** vs. **Research** se encontró que 80 estudiantes de un total de 151 de sexo femenino adjuntaron evidencias de participación en actividades de investigación; además, de los 181 estudiantes que no argumentaron investigación, de un total de 400 postulados, 71 son de sexo femenino y 110 de sexo masculino. En la tabla de contingencias **Gender** vs. **University_Rating** se calculó que 14 estudiantes de un total de 249 de sexo masculino presentaron aspiraciones de ingreso a unna universidad de una estrella; además, de los 60 estudiantes que presentaron solicitudes de ingreso a universidades de cinco estrellas, 23 eran de sexo femenino y 37 de sexo masculino. Por último, en la tabla de contingencia **Research** vs. **University_Rating** se puede determinar que 59 estudiantes, de un total de 219, que presentaron evidencias de haber participado en procesos de investigación, presentaron sus aspiraciones de ingreso en universidades de cuatro estrellas; además, 75 estudiantes, de un total de 107, que se postularon en universidades de dos estrellas, lo hicieron sin evidenciar participación en procesos de investigación.
 
-Al tomar como base las tablas de contingencia descritas antes, se presenta a través de la pestaña **Tablas de Probabilidades** las proporciones relativas en términos de los pares de variables examininados. En este sentido, a nivel de ejemplo se presentan algunas lecturas de ellas: en la tabla de probabilidades **Gender** vs. **Research** el $20.00$ $\%$ del total de estudiantes son de sexo femenino que presentaron evidencias en su aplicación de haber participado en procesos de investigación; además, el $45.25$ $\%$ del total de estudiantes no argumentó en su postulación haber participado en procesos de investigación, donde el $17.75$ $\%$ eran hombres y el $27.50$ $\%$ mujeres. En la tabla de probabilidades **Gender** vs. **University_Rating** que el $3.50$ $\%$ del total de estudiantes fueron hombres que presentaron sus postulaciones a universidades de una estrella; además, del $15.00$ $\%$ de postulados a universidades de cinco estrellas, aditivamente el $9.25$ $\%$ eran hombres y el $5.75$ $\%$ mujeres. Por último, en la tabla de probabilidades **Research** vs. **University_Rating** el $14.75$ $\%$ del total de estudiantes presentaron evidencias de participación en procesos investigativos y se postularon a universidades de cuatro estrellas; además, el $18.75$ $\%$ del total de estudiantes se postularon para ingresar a universidades de dos estrellas sin presentar evidencias de haber participado en procesos de investigación.
+Al tomar como base las tablas de contingencia descritas antes, se presenta a través de la subpestaña **Probabilidades** las proporciones relativas en términos de los pares de variables examininados. En este sentido, a nivel de ejemplo se presentan algunas lecturas de ellas: en la tabla de probabilidades **Gender** vs. **Research** el $20.00$ $\%$ del total de estudiantes son de sexo femenino que presentaron evidencias en su aplicación de haber participado en procesos de investigación; además, el $45.25$ $\%$ del total de estudiantes no argumentó en su postulación haber participado en procesos de investigación, donde el $17.75$ $\%$ eran hombres y el $27.50$ $\%$ mujeres. En la tabla de probabilidades **Gender** vs. **University_Rating** que el $3.50$ $\%$ del total de estudiantes fueron hombres que presentaron sus postulaciones a universidades de una estrella; además, del $15.00$ $\%$ de postulados a universidades de cinco estrellas, aditivamente el $9.25$ $\%$ eran hombres y el $5.75$ $\%$ mujeres. Por último, en la tabla de probabilidades **Research** vs. **University_Rating** el $14.75$ $\%$ del total de estudiantes presentaron evidencias de participación en procesos investigativos y se postularon a universidades de cuatro estrellas; además, el $18.75$ $\%$ del total de estudiantes se postularon para ingresar a universidades de dos estrellas sin presentar evidencias de haber participado en procesos de investigación.
 
-Como ocurre con las tablas de probabilidades o proporciones, las **Tablas de Frecuencias Condicionadas**, por filas o columnas, se calcularon con base eb las tablas de contingencia respectivas. Así, se pueden presentar las siguientes lecturas de ejemplo:
+Como ocurre con las tablas de probabilidades o proporciones, en la subpestaña **Frecuencias [CPF y CPC]**, las frecuencias condicionadas por filas y condicionadas por columnas (respectivamente) se calcularon con base en las tablas de contingencia respectivas. Así, se pueden presentar las siguientes lecturas de ejemplo: según la matriz de frecuencias CPF de **Gender** vs. **Research** de los estudiantes de sexo femenino el $52.98$ $\%$ se postuló presentando evidencias de haber participado en procesos de investigación, por otro lado, entre los estudiantes de sexo masculino lo hizo el $55.82$ $\%$; además, según la misma matriz pero condicionada por columnas, el $39.23$ $\%$ de los estudiantes que no presentaron evidencias de haber participado en procesos de investigación fueron de sexo femenino, mientras que el $60.77$ $\%$ eran de sexo masculino. Ahora, según la matriz de frecuencias CPF de **Gender** vs. **University_Rating** el $5.62$ $\%$ de los estudiantes de sexo masculino se postuló a universidades de una estrella, mientras que el $7.95$ $\%$ de las mujeres hizo lo mismo; además, según la misma matriz pero condicionada por columnas, del total de estudiantes que se presentaron a universidades de una estrella el $46.15$ $\%$ fueron mujeres y el $53.85$ $\%$ hombres. Por último, según la matriz de frecuencias CPF de **Research** vs. **University_Rating** solo el $4.42$ $\%$ de los estudiantes que no evidenciaron participaciones en procesos de investigación se postularon para universidades de cinco estrellas, mientras que a ellas se presentaron el $23.74$ $\%$ de estudiantes que sí tenían evidencias de participación en dichos procesos. Complementariamente, según la misma matriz pero condicionada por columnas, el $13.33$ $\%$ del total de estudiantes que se presentaron a universidades de cinco estrellas estos no argumentaron haber participado en procesos de investigación, mientras que el $86.67$ $\%$ sí lo hizo.
 
-#### Tablas de Contingencia
+Con base en las matrices de frecuencias se entienden los perfiles condicionados por filas y columnas que se exhiben en la subpestaña **Perfiles [CPF y CPC]**. Los gráficos de perfiles se muestran en el mismo orden de los objetos anteriormente descritos. Sin embargo, en los gráficos de perfiles se pueden cotejar las proporciones contra un individuo promedio, etiquetado con **marg**. 
+
+#### AC Parejas Totales {.tabset .tabset-pills}
+
+##### Contingencias
 ```{r Tablas_de_Contingencia, fig.align = 'center'}
 addmargins(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research))
 addmargins(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating))
 addmargins(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))
 ```
 
-#### Tablas de Probabilidades
+##### Probabilidades
 ```{r Tablas_de_Probabilidades, fig.align = 'center'}
 addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research))*100)
 addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating))*100)
 addmargins(prop.table(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))*100)
 ```
 
-#### Tablas de Frecuencias Condicionadas
+##### Frecuencias [CPF y CPC]
 ```{r Tablas_de_Frecuencias_Condicionadas, fig.align = 'center'}
-addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research), 1)*100, 2)
-addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research), 2)*100, 1)
+round(addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research), 1)*100, 2), 2)
+round(addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research), 2)*100, 1), 2)
 
-addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating), 1)*100, 2)
-addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating), 2)*100, 1)
+round(addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating), 1)*100, 2), 2)
+round(addmargins(prop.table(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating), 2)*100, 1), 2)
 
-addmargins(prop.table(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), 1)*100, 2)
-addmargins(prop.table(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), 2)*100, 1)
+round(addmargins(prop.table(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), 1)*100, 2), 2)
+round(addmargins(prop.table(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), 2)*100, 1), 2)
 ```
 
-#### Gráficos de Perfiles
+##### Perfiles [CPF y CPC]
 ```{r Graficos_de_Perfiles, fig.align = 'center'}
 plotct(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research),"row")
 plotct(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research),"col")
@@ -530,26 +534,28 @@ plotct(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$Unive
 plotct(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating),"col")
 ```
 
-#### Pruebas de Correspondencias
+##### Pruebas de Hipótesis
 ```{r Pruebas_de_Correspondencia, fig.align = 'center'}
 chisq.test(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$Research))
 chisq.test(table(Admission_Dataset_Initial$Gender, Admission_Dataset_Initial$University_Rating))
 chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))
 ```
 
-#### Contingencias y Residuales [R-UR]
+#### AC Pareja Única {.tabset .tabset-pills}
+
+##### Contingencias y Residuales [R-UR]
 ```{r Contingencias_y_Residuales, fig.align = 'center'}
 chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$observed
 chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$expected 
 chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$residuals
 ```
 
-#### Contribuciones [R-UR]
+##### Contribuciones [R-UR]
 ```{r Contribuciones_R-UR, fig.align = 'center'}
 chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$residuals^2/chisq.test(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating))$statistic*100
 ```
 
-#### Biplot Correspondencia Simple [R-UR]
+##### Biplot Correspondencia Simple [R-UR]
 ```{r Biplot_Correspondencia_Simple_R-UR, fig.align = 'center'}
 CA(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), graph = FALSE)$eig
 #fviz_ca_biplot(CA(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$University_Rating), graph = FALSE), repel = TRUE)
