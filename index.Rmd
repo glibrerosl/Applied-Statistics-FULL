@@ -499,7 +499,9 @@ con base en las descripciones hechas es posible anticipar que los pares de varia
 
 A través de la pestaña **AC Pareja Única** se despliegan las sub-pestañas relacionadas con la continuación del análisis de correspondencias entre ellas. En **Contingencias y Residuales [R-UR]** (R: Research y UR: University_Rating) se pueden visualizar las tablas de contingencias, valores esperados y residuales de la pareja de variables en curso. Respecto de las dos primeras es visualizable que el recuento observado y el recuento esperado bajo la hipótesis nula respecto de cada variable son lejanos entre sí, en este sentido, la dependencia entre las variables se robustece.  "rango_observado" son los recuentos asociados con cada categoría de datos y "rango_esperado" son los recuentos esperados para cada categoría bajo la hipótesis nula. Además, el análisis de residuales de Pearson y estandarizados muestran que las mayores desviaciones respecto a los valores esperados ocurren entre las universidades de cinco, cuatro, dos y una estrella. Asimismo, en la sub-pestaña **Contribuciones [R-UR]** puede apreciarse, comentado lo anterior, que el valor tres estrellas de la variable **University_Rating** contribuye poco en la explicación de la variabilidad del conjunto en comparación con los demás.
 
+Por último, el resultado definitivo del análisis de correspondencias simple se muestra a través de la sub-pestaña **Correspondencia Simple Unidimensional [R-UR]**. En este apartado se establece que solo una dimensión absorbe toda la variabilidad de la pareja, por lo que la representación bidimensional en el palno de factores es irrealizable. Sin embargo,  es posible hacer una interpretación unidimensional de los resultados. Al ser requeridas las variables de soporte del AC, primero por columnas y luego por filas, las coordenadas proyectadas de la variable **University_Rating** en relación con las categorías de cinco y cuatro estrellas se presentan del lado positivo del eje dimensional creando oposiciones binarias con, respectivamente, cinco estrellas con una estrella y cuatro estrellas con dos estrellas, mientras que las universidades de tres estrellas se enccuentra técnicamente en el centro del eje. Así mismo, los tipos de universidades cinco, cuatro, dos y de una estrella, son las que más contribuyen en la configuración de la dimensión, de nuevo quedan rezagadas las universidades de tres estrellas. Además, es determinante que la calidad de representación alcanza el máximo con cada una de las variables. Un comportamiento semejante a lo expuesto puede apreciarse con la variable fila **Research**, su calidad de representación es máxima, las coordenadas de sus categorías se yuxtaponen en el eje unidimensional y sus contribuciones son aproximadamente equilibradas. De lo mencionado se interpreta que presentan asociación relevante, postiva o negativa, entre filas y columnas, las categorías (de las respectivas variables) cinco y cuatro estrellas con research, y una y dos estrellas con no-research.
 
+Dado que la representación gráfica bidimensional fue irrealizable, se presenta en la [sección 12](#sec12) el análisis de correspondencias múltiples para lograrla.
 
 #### AC Parejas Totales {.tabset .tabset-pills}
 
@@ -574,8 +576,10 @@ CA(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$Universit
 
 ## **12. Correspondencias Múltiples**
 
+
+
 ### 12.1. Planteamiento del Problema
-Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda...
+Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda desarrollar el análisis de correspondencias múltiples para lograr una representación gráfica en el primer plano factorial, debido a la imposibilidad de lograrlo en el análisis de correspondencias simple.
 
 ### 12.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
