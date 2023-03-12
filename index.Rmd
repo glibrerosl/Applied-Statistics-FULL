@@ -655,13 +655,17 @@ Con base en las variables cuantitativas del conjunto de datos descrito en la [se
 
 La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de conglomerados entre las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2).
 
-Con el fin de visualar adecuadamente los datos, y solo con propósitos académicos, el conjunto de datos descrito en la [sección 2](#sec2) fue modificado agregándole una variable categórica clasificadora: **Nationality**. Esta variable se obtuvo del <a href = "https://www.iie.org/" title = "Institute of International Education" target = "_blank" rel = "noopener noreferrer">Institute of International Education</a> (Instituto de Educación Internacional) para una fecha equivalente a la del conjunto de datos inicial. La modificación consistió en agregar un campo que registrase para cada estudante extranjero su nacionalidad. Como las proporciones de participación de las nacionalidades de los estudiantes fueron diferentes, pero conocidas, el método de asignación fue aleatorio y ponderado con base en ellas (véase la pestaña **Campo Clasificador**). Cabe mencionar que la asignación se hizo directamente en el libro de cálculo con base en la fórmula *=INDICE([RANGO_DE_ETIQUETAS]; CONTAR.SI([RANGO_DE_PROPORCIONES_ACUMULADAS]; "<=" & ALEATORIO()) + 1)* para 400 registros. Además, el campo **Nationality** registra junto con la nacionalidad del estudiante la posición que ocupa dicho país como aportante de estudiantes extranjeros en el periodo de medición.
-
-
+Con el fin de visualar adecuadamente los datos, y solo con propósitos académicos, el conjunto de datos descrito en la [sección 2](#sec2) fue modificado de tres maneras. Primero, se le agregó una variable categórica clasificadora: **Nationality**. Esta variable se obtuvo del <a href = "https://www.iie.org/" title = "Institute of International Education" target = "_blank" rel = "noopener noreferrer">Institute of International Education</a> (Instituto de Educación Internacional) para una fecha equivalente a la del conjunto de datos inicial. La modificación consistió en agregar un campo que registrase para cada estudante extranjero su nacionalidad. Como las proporciones de participación de las nacionalidades de los estudiantes fueron diferentes, pero conocidas, el método de asignación fue aleatorio y ponderado con base en ellas (véase la pestaña **Campo Clasificador**). Cabe mencionar que la asignación se hizo directamente en el libro de cálculo con base en la fórmula *=INDICE([RANGO_DE_ETIQUETAS]; CONTAR.SI([RANGO_DE_PROPORCIONES_ACUMULADAS]; "<=" & ALEATORIO()) + 1)* para 400 registros. Además, el campo **Nationality** registra junto con la nacionalidad del estudiante la posición que ocupa dicho país como aportante de estudiantes extranjeros en el periodo de medición. Segundo, se estandarizaron en una escala de $0$ a $1$ todas las variables cuantitativas. Por último, se aplicó un filtro a los registros con base en la variable clasificadora y se calcularon nuevos registros promedio de las variables cuantitativas. Así, el análisis de conglomerados se hizo con base en el conjunto de datos mostrado en la pestaña **Conjunto Modificado**, en esta se muetran los primeros registros y la estructura del conjunto.
 
 #### Campo Clasificador
 ```{r Campo_Clasificador, fig.align = 'center'}
 as.data.frame(Nationalities)[1:24,-c(4,5,6)]
+```
+
+#### Conjunto Modificado
+```{r Conjunto_Modificado, fig.align = 'center'}
+head(as.data.frame(Admission_Dataset_Initial_Nat_Average))
+str(as.data.frame(Admission_Dataset_Initial_Nat_Average))
 ```
 
 #### Disimilaridad
@@ -728,7 +732,7 @@ mojena(hc_average)
 
 ##### Enlace Simple
 ```{r Dendograma_Enlace_Simple, fig.align = 'center'}
-fviz_dend(hc_single, k = 3, cex = 0.5, k_colors = "npg", color_labels_by_k = T, rect = T)
+suppressWarnings(fviz_dend(hc_single, k = 3, cex = 0.5, k_colors = "npg", color_labels_by_k = T, rect = T))
 ```
 
 ##### Enlace Completo
