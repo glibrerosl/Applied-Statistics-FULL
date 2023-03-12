@@ -757,7 +757,50 @@ Con base en las variables cuantitativas del conjunto de datos descrito en la [se
 
 La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de conglomerados entre las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2).
 
+#### K-óptimos {.tabset .tabset-pills}
 
+##### Elbow
+```{r WSS, fig.align = 'center'}
+fviz_nbclust(data_, kmeans, method = "wss") + geom_vline(xintercept = 3, linetype = 2)
+```
+
+##### Silhouette
+```{r Silhouette, fig.align = 'center'}
+fviz_nbclust(data_, kmeans, method = "silhouette")
+```
+
+##### Gap Statistic
+```{r GAP_STAT, fig.align = 'center'}
+fviz_nbclust(data_, kmeans, method = "gap_stat")
+```
+
+#### Resultados K-means {.tabset .tabset-pills}
+
+##### K-óptimo [wws]
+```{r K_WSS, fig.align = 'center'}
+set.seed(780728)
+print(kmeans(data_, 3, nstart = 25))
+```
+
+##### K-óptimo [sil]
+```{r K_Silhouette, fig.align = 'center'}
+set.seed(780728)
+print(kmeans(data_, 2, nstart = 25))
+```
+
+#### Gráficos K-means {.tabset .tabset-pills}
+
+##### K-óptimo [wws]
+```{r G_WSS, fig.align = 'center'}
+fviz_cluster(kmeans(data_, 3, nstart = 25), data = data_, palette = c("#2E9FDF", "#00AFBB", "#E7B800", "#E7B801"), ellipse.type = "euclid", star.plot = TRUE, repel = TRUE, ggtheme = theme_minimal()
+)
+```
+
+##### K-óptimo [sil]
+```{r G_Silhouette, fig.align = 'center'}
+fviz_cluster(kmeans(data_, 2, nstart = 25), data = data_, palette = c("#2E9FDF", "#00AFBB", "#E7B800", "#E7B801"), ellipse.type = "euclid", star.plot = TRUE, repel = TRUE, ggtheme = theme_minimal()
+)
+```
 
 ## **Conclusiones**
 Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de lo obtenido.
