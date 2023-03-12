@@ -2,7 +2,7 @@
 title: "**Admisión en la Universidad**"
 subtitle: "Estudio de Análisis Multivariado con base en un conjunto de datos de aspirantes extranjeros para ser admitidos en estudios superiores en EE.UU."
 author: "Por: Giancarlo Libreros Londoño::glibrerosl@libertadores.edu.co"
-date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual). *Cierre de Actualizaciones [T1: 14:33 16-feb-2023] [T2: 11:59 26-feb-2023] [T3: 11:59 5-mar-2023]*."
+date: "Estudio Multivariante Elaborado entre febrero y marzo de 2023 como actividad formativa y evaluativa del curso Análisis Multivariante de la especialización en Estadística Aplicada (modalidad virtual). *Cierre de Actualizaciones [T1: 14:33 16-feb-2023] [T2: 11:59 26-feb-2023] [T3: 11:59 5-mar-2023] [T4: 11:59 12-mar-2023]*."
 output:
   html_document:
     toc: TRUE
@@ -251,9 +251,11 @@ mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="dh")
 mvn(Admission_Dataset[,-c(1,2,8,9)], mvnTest="royston")
 ```
 
+<a name="fase2"></a>
+
 ## **Objetivo y Anotaciones :: Fase 2**
 ## **[Componentes Principales]**
-En términos generales, esta segunda etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en el conjunto de datos tratado en la Etapa 1, pero ahora desde un enfoque de análisis de componentes principales sobre las variables cuantitativas, que incluirá: selección, calidad de representación, contribuciones e interpretación.
+En términos generales, esta segunda etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en el conjunto de datos tratado en la fase [1](#sec1), pero ahora desde un enfoque de análisis de componentes principales sobre las variables cuantitativas, que incluirá: selección, calidad de representación, contribuciones e interpretación.
 
 Recuérdese que el conjunto de datos de trabajo es descrito en la [sección 2](#sec2) y los referentes teóricos en la [sección 1](#sec1).
 
@@ -466,9 +468,11 @@ data_61 <- cbind(Admission_Dataset_Initial[sample(1:nrow(Admission_Dataset_Initi
 fviz_pca_biplot(PCA(data_61, ncp = 6, scale.unit = T, graph = F, quali.sup = 7), axes = c(1, 2), repel = T, habillage = 7)
 ```
 
+<a name="fase3"></a>
+
 ## **Objetivo y Anotaciones :: Fase 3**
 ## **[Correspondencias]**
-En términos generales, esta tercera etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en el conjunto de datos tratado en las Etapa 1 y 2, pero ahora desde un enfoque de análisis de correspondencias simples y múltiples sobre las variables cuanlitativas, que incluirá: construcción de tablas de contingencias y disyuntivas completas, calidades de representación, contribuciones e interpretaciones.
+En términos generales, esta tercera etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en el conjunto de datos tratado en la fase [1](#sec1) y [2](#fase2), pero ahora desde un enfoque de análisis de correspondencias simples y múltiples sobre las variables cuanlitativas, que incluirá: construcción de tablas de contingencias y disyuntivas completas, calidades de representación, contribuciones e interpretaciones.
 
 Recuérdese que el conjunto de datos de trabajo es descrito en la [sección 2](#sec2) y los referentes teóricos en la [sección 1](#sec1).
 
@@ -587,9 +591,17 @@ Con base en las variables cualitativas del conjunto de datos descrito en la [sec
 
 La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de correspondencias múltiple (ACM) entre las variables categóricas del conjunto de datos descrito en la [sección 2](#sec2).
 
+La pestaña **ACM** muestra la multidimensionalidad esperada, comparada con la unidimensionalidad del ACS de la [sección 11](#sec11), al trabajar conjuntamente con las tres variables categóricas del conjunto de datos: **Gender**, **University_Rating** y **Research**. Muestra además que las dimensiones del plano principal explican el $42.16$ $%$ del conjunto (será sobre este plano que se continuará con las interpretaciones del ACM). Además, la evidente baja concentración de absorción de varianza por parte de alguna o algunas dimensiones se reflejará en las distancias entre los perfiles de las variables categóricas.
+
+En la pestaña **Biplot ACM** se muestran las semejanzas de perfiles entre estudiantes representados por puntos azules sobrepuestos que indican coordenadas de convergencia y las asociaciones entre algunas categorías de las variables y conjuntos de estudiantes. Cabe anotar que las semejanzas entre categoría de las variables están presentadas por sus coordenas respecto de los semiejes dimensionales, más que por sus proximidades, esto concuerda con los resultados obtenidos en la [sección 11](#sec11). Por ejemplo, en semejanza a nivel de categorías de las variables destacan los grupos: one_stars, two_stars, F y no-research por un lado, por otro, five_stars, four_stars, M y research, así como ciertos grupos evidentes de estudiantes. Complementariamente, a nivel de asociación se destaca la del grupo de estudiantes cercanos a two_stars y la de otro grupo nutrido cercano a four_stars. En general se pueden visualizar fácilmente las asociaciones entre las categorías de las variables y los grupos de estudiantes afines con ellas.
+
+Seguidamente, la pestaña **Calidad de Representación** muestra que las categorías de la variable **Research** fueron las mejor representadas, en oposición a las categorías one_star y three_strars de la variable **University_Rating**. El resto quedó en un rango intermedio-alto de calidad de representación. Como la calidad de representación en subespacios de dimensión reducida se mide en porcentajes de inercia con respecto a la total la cercanía de un punto al origen del plano factorial indica una baja calidad de representación en él, por lo tanto, la categoría three_stars la presenta. La matriz de calidad de representación evidencia numéricamente la situación mencionada: para ella la suma de los cosenos cuadrados en las dimensiones del primer plano plano factorial solo ascienden a $0.09$, seguida de one_star que suma $0.18$.
+
+Complementariamente, la pestaña **Contribuciones** muestra que para las dimensiones del primer plano factorial, y en concordancia con lo expresado en el párrafo anterior, las categorías de la variable **University_Rating**: one_star y three_stars, en ambas dimensiones quedan por debajop de la línea media de contribución, mientras que las categorías de la misma variable: four_stars y five_stars, aportan en ambos casos por enncima de la línea media. En este sentido, en la pestaña **Biplot con Contribuciones** se ´visualiza una representación en el primer plano factorial semejante a la obtenida en la pestaña **calidad de Representación**.
+
 #### ACM
 ```{r ACM, fig.align = 'center'}
-MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE)$eig
+round(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE)$eig,2)
 ```
 
 #### Biplot ACM
@@ -600,6 +612,7 @@ fviz_mca_biplot(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph 
 #### Calidad de Representación
 ```{r Calidad_de_Representacion_ACM, fig.align = 'center'}
 fviz_mca_var(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), col.var ="cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
+MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE)$var$cos2
 ```
 
 #### Contribuciones
@@ -616,13 +629,30 @@ fviz_contrib(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = F
 fviz_mca_var(MCA(Admission_Dataset_Initial[1:400, -c(1,3,4,5,6,7,10)], graph = FALSE), col.var ="contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
 ```
 
+## **Objetivo y Anotaciones :: Fase 4**
+## **[Conglomerados]**
+En términos generales, esta cuarta etapa de estudio mostrará cálculos, visualizaciones e interpretaciones con base en el conjunto de datos tratado en las fases [1](#sec1), [2](#fase2) y [3](#fase3), pero ahora desde un enfoque de análisis de conglomerados en versión jerárquica (dendogramas) y no-jerárquica (*K*-medias).
+
+Recuérdese que el conjunto de datos de trabajo está descrito en la [sección 2](#sec2) y los referentes teóricos en la [sección 1](#sec1).
+
+Por último, este trabajo fue procesado con `r R.version.string` mediado por RStudio 2022.12.0 Build 353 en una plataforma x86_64-w64-mingw32. Además, por su naturaleza de publicación en línea y para cumplir con el requisito temporal de entrega, será actualizado, como máximo, hasta las 11:59 p.m. del domingo 12 de marzo de 2023.
+
+<a name="sec13"></a>
+
+## **13. Agrupación Jerárquica**
+
+<a name="sec13"></a>
+
+## **14. Agrupación no-Jerárquica**
 
 ## **Conclusiones**
 Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de lo obtenido.
 
 Como se menciona en el trabajo hecho en el curso Análisis de Regresión (que puede ser consultado temporalmente a través de: https://rpubs.com/glibrerosl/Applied-Statistics-FULL), las aspiraciones de un estudiante extranjero para ingresar a una universidad norteamericana se enfrentan a un elevado grado de competición. Además, se constata, desde la perspectiva de estudio multivariable, que, por lo menos descriptivamente, una variable clasificadora categórica como el sexo, resulta muy poco significativa formar grupos diferenciados entre los estudiantes con aspiraciones de ingreso, asunto que contrasta con los relatos socio-populistas basados en falacias _ad hominem_. El dato, si es fino, siempre será objetivo.
 
-Complementariamente, todas las pruebas de normalidad multivariante resultaron negativas, salvo que a nivel univariado la variable **CGPA** presentó distribución normal en todas ellas. Así, el deterioro de las propiedades de independencia lineal juegan a favor de la síntesis de información a través de la estimación de componentes principales. Este pudo describir una **medida de competitividad formativa** que conjuga, con una retención de $77.05$ $\%$ la variabilidad del conjunto de datos, la naturaleza interpretativa del fenómeno estudiado. Así, cuanto mayor sea el valor de las variables que registra un estudiante para aplicar a una plaza en una universidad de su elección, mayor será el estado de favorabilidad de que el estudiante sea admitido por la universidad de su preferencia. 
+Complementariamente, todas las pruebas de normalidad multivariante resultaron negativas, salvo que a nivel univariado la variable **CGPA** presentó distribución normal en todas ellas. Así, el deterioro de las propiedades de independencia lineal juegan a favor de la síntesis de información a través de la estimación de componentes principales. Este pudo describir una **medida de competitividad formativa** que conjuga, con una retención de $77.05$ $\%$ la variabilidad del conjunto de datos, la naturaleza interpretativa del fenómeno estudiado. Así, cuanto mayor sea el valor de las variables que registra un estudiante para aplicar a una plaza en una universidad de su elección, mayor será el estado de favorabilidad de que el estudiante sea admitido por la universidad de su preferencia.
+
+Asimismo, el análisis de correspondencias, simple y múltiple, mostró que las universidades de mejor calificación, en particular, las de tres y cuatro estrellas tienden a captar a los estudiantes de mejor **medida de competitividad formativa**, algo esperado dada la naturaleza del fenómeno estudiado. Además, la variable categórica **Research** juega un papel determinante en la selectividad, mientras que la varaible **Gender** es indeterminante estadísticamente para aumentar las probabilidades de ingreso de un estudiante a una universidad de su preferencia.
 
 Por último, es importante resaltar el aspecto técnico relacionado con el procesamiento estadístico hecho en este estudio a nivel de robustez, eficiencia e integración que R, RStudio y RMarkdown ofrecen al usuario para que este se pueda enfocar en él sin pasar mayores inconvenientes con el soporte documental para presentarlo.
 
