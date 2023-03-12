@@ -585,7 +585,7 @@ Con base en las variables cualitativas del conjunto de datos descrito en la [sec
 
 ### 12.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
-La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de correspondencias múltiple (ACM) entre cada par de varaibles categóricas del conjunto de datos: Gender, Research y University_Rating. Por ser baja la cantidad de variables categóricas se trabaja el ACS sobre las tres combinaciones posibles.
+La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de correspondencias múltiple (ACM) entre las variables categóricas del conjunto de datos descrito en la [sección 2](#sec2).
 
 #### ACM
 ```{r ACM, fig.align = 'center'}
