@@ -576,12 +576,16 @@ CA(table(Admission_Dataset_Initial$Research, Admission_Dataset_Initial$Universit
 
 ## **12. Correspondencias Múltiples**
 
+Recuperando de nuevo el trabajo de [@AEDMDiaz-Morales1ed] se dice que el ACS se puede extender desde tablas de contingencia hacia tablas disyuntivas completas. En estas las filas son los objetos a los cuales se les registran características de interés a través de las columnas que compilan las modalidades de las variables categóricas estudiadas de ellos. Así, el análisis de correspondencias múltiple (ACM) es el AC aplicado a una tabla disyuntiva completa. Por lo tanto, en el ACM una variable categórica asigna a cada objeto de una población una modalidad a través de la cual los particiona exclusiva y exhaustivamente.
 
+Esta sección es desarrollada como alternativa de completitud del análisis de correspondencias simples que en la [sección 11](#sec11) fue inapreciable debido a la unidimensionalidad de la representación de los datos a nivel de proyección de las variables categóricas que cumplieron la hipótesis de dependencia. Por lo tanto, del tratamiento conjunto de todas las varaibles categóricas se espera obtener una representación en el primer plano factorial.
 
 ### 12.1. Planteamiento del Problema
 Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda desarrollar el análisis de correspondencias múltiples para lograr una representación gráfica en el primer plano factorial, debido a la imposibilidad de lograrlo en el análisis de correspondencias simple.
 
 ### 12.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
+La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de correspondencias múltiple (ACM) entre cada par de varaibles categóricas del conjunto de datos: Gender, Research y University_Rating. Por ser baja la cantidad de variables categóricas se trabaja el ACS sobre las tres combinaciones posibles.
 
 #### ACM
 ```{r ACM, fig.align = 'center'}
