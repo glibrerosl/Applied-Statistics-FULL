@@ -30,12 +30,17 @@ library(FactoMineR)
 library(factoextra)
 library(psych)
 library(FactoClass)
+library(cluster)
+library(dendextend)
+library(magrittr)
 
 knitr::opts_chunk$set(echo=TRUE)
 
 Admission_Dataset <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Admission_Dataset.xlsx")
 Admission_Dataset_Initial <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Admission_Dataset_Initial.xlsx")
-Aux_ <- read_excel("C:/Users/gianc/Desktop/Aux_.xlsx")
+Nationalities <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Nationalities.xlsx")
+Admission_Dataset_Initial_Nat <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Admission_Dataset_Initial_Nat.xlsx")
+Admission_Dataset_Initial_Nat_Average <- read_excel("D:/ZB/[2] Academicas/[10.1] Especializacion/[0] Cursos/[3] Ans_Multivariante/Tareas/Admission_Dataset_Initial_Nat_Average.xlsx")
 ```
 
 <a name="sec1"></a>
@@ -585,6 +590,7 @@ Recuperando de nuevo el trabajo de [@AEDMDiaz-Morales1ed] se dice que el ACS se 
 Esta sección es desarrollada como alternativa de completitud del análisis de correspondencias simples que en la [sección 11](#sec11) fue inapreciable debido a la unidimensionalidad de la representación de los datos a nivel de proyección de las variables categóricas que cumplieron la hipótesis de dependencia. Por lo tanto, del tratamiento conjunto de todas las varaibles categóricas se espera obtener una representación en el primer plano factorial.
 
 ### 12.1. Planteamiento del Problema
+
 Con base en las variables cualitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda desarrollar el análisis de correspondencias múltiples para lograr una representación gráfica en el primer plano factorial, debido a la imposibilidad de lograrlo en el análisis de correspondencias simple.
 
 ### 12.2. Desarrollo del Análisis {.tabset .tabset-pills}
@@ -641,9 +647,113 @@ Por último, este trabajo fue procesado con `r R.version.string` mediado por RSt
 
 ## **13. Agrupación Jerárquica**
 
-<a name="sec13"></a>
+### 13.1. Planteamiento del Problema
+
+Con base en las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda desarrollar el análisis de conglomerados con base agrupaciones jerárquicas que se representen con dendogramas, esto implica clasificar a los objetos de trabajo con métodos aglomerativos del vecino más cercano, más lejano y de la unión mediante el promedio, soportados en la distancia euclidiana.
+
+### 13.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
+La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de conglomerados entre las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2).
+
+Con el fin de visualar adecuadamente los datos, y solo con propósitos académicos, el conjunto de datos descrito en la [sección 2](#sec2) fue modificado agregándole una variable categórica clasificadora: **Nationality**. Esta variable se obtuvo del <a href = "https://www.iie.org/" title = "Institute of International Education" target = "_blank" rel = "noopener noreferrer">Institute of International Education</a> (Instituto de Educación Internacional) para una fecha equivalente a la del conjunto de datos inicial. La modificación consistió en agregar un campo que registrase para cada estudante extranjero su nacionalidad. Como las proporciones de participación de las nacionalidades de los estudiantes fueron diferentes, pero conocidas, el método de asignación fue aleatorio y ponderado con base en ellas (véase la pestaña **Campo Clasificador**). Cabe mencionar que la asignación se hizo directamente en el libro de cálculo con base en la fórmula *=INDICE([RANGO_DE_ETIQUETAS]; CONTAR.SI([RANGO_DE_PROPORCIONES_ACUMULADAS]; "<=" & ALEATORIO()) + 1)* para 400 registros. Además, el campo **Nationality** registra junto con la nacionalidad del estudiante la posición que ocupa dicho país como aportante de estudiantes extranjeros en el periodo de medición.
+
+
+
+#### Campo Clasificador
+```{r Campo_Clasificador, fig.align = 'center'}
+as.data.frame(Nationalities)[1:24,-c(4,5,6)]
+```
+
+#### Disimilaridad
+```{r Disimilaridad, fig.align = 'center'}
+data_ = as.data.frame(Admission_Dataset_Initial_Nat_Average)[, -c(1)]
+rownames(data_) = unclass(Admission_Dataset_Initial_Nat_Average$Nationality)
+fviz_dist(get_dist(data_, stand = T, method = "euclidean"), gradient = list(low = "#00AFBB", mid = "white", high = "#FC4E07"))
+```
+
+#### Optimización de Mojena  {.tabset .tabset-pills}
+
+##### Unión Simple
+```{r Optimizacion_Mojena_Simple, fig.align = 'center'}
+hc_single = hclust(get_dist(data_, stand = T, method = "euclidean"), method = "single")
+
+mojena = function(hc){
+  n_hd = length(hc$height)
+  alp_g = 0 ; alpha = hc$height[n_hd:1]
+  for(i in 1:(n_hd-1)){
+    alp_g[i] = mean(alpha[(n_hd-i+1):1])+1.25*sd(alpha[(n_hd-i+1):1])
+  }
+  nog = sum(alp_g<= alpha[-n_hd]) + 1
+  plot(alpha[-n_hd], pch=20, col=(alp_g>alpha[-n_hd])+1, main = paste("Optimal number of groups =",nog),
+       ylab = expression(alpha[g]), xlab="Nodes")}
+
+mojena(hc_single)
+```
+
+##### Unión Completa
+```{r Optimizacion_Mojena_Completo, fig.align = 'center'}
+hc_complete = hclust(get_dist(data_, stand = T, method = "euclidean"), method = "complete")
+
+mojena = function(hc){
+  n_hd = length(hc$height)
+  alp_g = 0 ; alpha = hc$height[n_hd:1]
+  for(i in 1:(n_hd-1)){
+    alp_g[i] = mean(alpha[(n_hd-i+1):1])+1.25*sd(alpha[(n_hd-i+1):1])
+  }
+  nog = sum(alp_g<= alpha[-n_hd]) + 1
+  plot(alpha[-n_hd], pch=20, col=(alp_g>alpha[-n_hd])+1, main = paste("Optimal number of groups =",nog),
+       ylab = expression(alpha[g]), xlab="Nodes")}
+
+mojena(hc_complete)
+```
+
+##### Unión Promedio
+```{r Optimizacion_Mojena_Promedio, fig.align = 'center'}
+hc_average = hclust(get_dist(data_, stand = T, method = "euclidean"), method = "average")
+
+mojena = function(hc){
+  n_hd = length(hc$height)
+  alp_g = 0 ; alpha = hc$height[n_hd:1]
+  for(i in 1:(n_hd-1)){
+    alp_g[i] = mean(alpha[(n_hd-i+1):1])+1.25*sd(alpha[(n_hd-i+1):1])
+  }
+  nog = sum(alp_g<= alpha[-n_hd]) + 1
+  plot(alpha[-n_hd], pch=20, col=(alp_g>alpha[-n_hd])+1, main = paste("Optimal number of groups =",nog),
+       ylab = expression(alpha[g]), xlab="Nodes")}
+
+mojena(hc_average)
+```
+
+#### Dendogramas Optimizados {.tabset .tabset-pills}
+
+##### Enlace Simple
+```{r Dendograma_Enlace_Simple, fig.align = 'center'}
+fviz_dend(hc_single, k = 3, cex = 0.5, k_colors = "npg", color_labels_by_k = T, rect = T)
+```
+
+##### Enlace Completo
+```{r Dendograma_Enlace_Completo, fig.align = 'center'}
+fviz_dend(hc_complete, k = 3, cex = 0.5, k_colors = "npg", color_labels_by_k = T, rect = T)
+```
+
+##### Enlace Promedio
+```{r Dendograma_Enlace_Promedio, fig.align = 'center'}
+fviz_dend(hc_average, k = 4, cex = 0.5, k_colors = "npg", color_labels_by_k = T, rect = T)
+```
+
+<a name="sec14"></a>
 
 ## **14. Agrupación no-Jerárquica**
+
+### 14.1. Planteamiento del Problema
+
+Con base en las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2) se demanda desarrollar el análisis de conglomerados con base agrupaciones no-jerárquicas a través del método de las *K*-medias y la representación gráfica diferenciada de las agrupaciones con base en códigos de colores.
+
+### 14.2. Desarrollo del Análisis {.tabset .tabset-pills}
+
+La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de conglomerados entre las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2).
+
+
 
 ## **Conclusiones**
 Complementariamente a los análisis que fueron expuestos en las secciones de estudio es importante hacer una mención global sobre el problema considerado a la luz de lo obtenido.
