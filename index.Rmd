@@ -33,6 +33,7 @@ library(FactoClass)
 library(cluster)
 library(dendextend)
 library(magrittr)
+library(NbClust)
 
 knitr::opts_chunk$set(echo=TRUE)
 
@@ -757,6 +758,9 @@ fviz_dend(hc_average, k = 4, cex = 0.5, k_colors = "npg", color_labels_by_k = T,
 
 ## **14. Agrupación no-Jerárquica**
 
+En el trabajo de [@AEDMDiaz-Morales1ed] se establece que, en términos generales, los métodos de aglomeración no-jerárquicos (o de partición) se implementan con base en la determinación inicial de alguna partición del conjunto de datos, que, evidentemente, genera subconjuntos de datos, es decir, otras particiones a las cuales se les calcula sus respectivos centroides; luego, las observaciones se vinculan con el conglomerado cuyo centroide esté más cercano para calcular de nuevo el centroide de los conglomerados y se hacen comparaciones voraces, para continuar recursivamente hasta que las observaciones sean irremovibles de sus respectivas particiones. Así, contrario a los métodos jerárquicos, la ubicación de una observación en un conglomerado puede variar.
+
+El método no-jerárquico con el que se cerrará el estudio del conjunto de datos con el que se ha trabajado hasta ahora es el de *K*-medias. Este particiona un conjunto de $n$ objetos en $k$ grupos, lo hace al escoger los centroides de los grupos que minimizan la distancia (euclidiana) entre cada objeto  y ellos, para asignar, en consecuencia, a cada individuo al conglomerado cuyo centroide esté más cercano a él. Por lo tanto, el método tiene como objetivo reubicar a los objetos en grupos tales que presenten la menor variabilidad posible.
 
 ### 14.1. Planteamiento del Problema
 
@@ -765,6 +769,10 @@ Con base en las variables cuantitativas del conjunto de datos descrito en la [se
 ### 14.2. Desarrollo del Análisis {.tabset .tabset-pills}
 
 La navegación a través de las pestañas permite visualizar objetos matriciales y gráficos que ayudan a desarrollar e interpretar el análisis de conglomerados entre las variables cuantitativas del conjunto de datos descrito en la [sección 2](#sec2).
+
+Como el método de *K*-medias requiere la especificación del número de conglomerados que se generarán, resulta indispensable determinarlo previamente y que además sea el mejor posible. A través de la pestaña **K-óptimos** se accede a las sub-pestañas de resultado de los cálculos de K-óptimos con base en los métodos de codo (**Elbow**), silueta (**Silhouette**), brecha (**Gap**) y mayoría (**Majority Rule**). El primero, ayudó a establecer que el número óptimo de agrupamientos que minimizan la variación total dentro de cada uno de los grupos es 3. El segundo, a través de la calidad de los agrupamientos (una silueta alta), determinó que el número óptimo de agrupamientos es 2. El tercero, con base en la estimación de los conglomerados óptimos que hacen que se maximice la estadística de brecha de tal manera que la estructura de agrupamiento está muy lejos de una distribución aleatoria uniforme de puntos, estableció que tal número óptimo fuese 1. Por último, el cuarto método, que se basa en el cálculo de 30 índices para determinar el número óptimo de conglomerados al variar todas las combinaciones de número de conglomerados, medidas de distancia y métodos de conglomerado, determinó que tal número es 2. Por lo tanto, la continuación del análisis de conglomerados se continuó con la representación gráfica de los agrupamientos basados en dos y tres conglomerados. Así, la pestaña **Resultados K-means** muestra para números óptimos de 3 y 2 agrupamientos las cantidades de observaciones, las ubicaciones de los centroides de los conglomerados, el vector de agrupamiento y la medida de la bondad de la clasificación (cohesión interna contra separación externa), que, evidentemente es más cercana a uno para el agrupamiento con base en 3 conglomerados.
+
+Por último, la pestaña **Gráficos K-means** exhibe los conglomerados en términos de 3 y 2 (número óptimo) grupos en el primer plano factorial que explica el $85.4$ $\%$ de la variabilidad de los datos. Al hacer la reasignación de 3 a 2 centroides se aprecia que el conglomerado que contiene a Colombia solo absorbe a Malasia, es decir solo aumenta una observación, en comparación con el conglomerado que contenía a China que absorbe a todo el conglomerado que contenía a Turquía. Así, puede argumentarse a favor del número óptimo de conglomerados igual a 2, porque la reasignación de centroides se reorientó a mejorar la cohesión interna con baja reducción de separación externa entre dos conglomerados que presentaban más homogeneidad. Sin embargo, las comparaciones entre los métodos tratados, jerárquicos y no-jerárquicos, generaron diferentes cantidades de grupos óptimos, pero ambos métodos coincidieron en que, en general, Indonesia y Nepal son casos por tratar con más detenimiento, por ejemplo, a través de métodos que soporten mejor la afectación que provocan valores extraños, por ejemplo, el método de K-medioides. 
 
 #### K-óptimos {.tabset .tabset-pills}
 
@@ -781,6 +789,11 @@ fviz_nbclust(data_, kmeans, method = "silhouette")
 ##### Gap Statistic
 ```{r GAP_STAT, fig.align = 'center'}
 fviz_nbclust(data_, kmeans, method = "gap_stat")
+```
+
+##### Majority Rule
+```{r Majority_Rule, fig.align = 'center'}
+suppressWarnings(NbClust(data = data_, diss = NULL, distance = "euclidean", min.nc = 2, max.nc = 10, method = "kmeans")$Best.nc)
 ```
 
 #### Resultados K-means {.tabset .tabset-pills}
@@ -819,6 +832,8 @@ Como se menciona en el trabajo hecho en el curso Análisis de Regresión (que pu
 Complementariamente, todas las pruebas de normalidad multivariante resultaron negativas, salvo que a nivel univariado la variable **CGPA** presentó distribución normal en todas ellas. Así, el deterioro de las propiedades de independencia lineal juegan a favor de la síntesis de información a través de la estimación de componentes principales. Este pudo describir una **medida de competitividad formativa** que conjuga, con una retención de $77.05$ $\%$ la variabilidad del conjunto de datos, la naturaleza interpretativa del fenómeno estudiado. Así, cuanto mayor sea el valor de las variables que registra un estudiante para aplicar a una plaza en una universidad de su elección, mayor será el estado de favorabilidad de que el estudiante sea admitido por la universidad de su preferencia.
 
 Asimismo, el análisis de correspondencias, simple y múltiple, mostró que las universidades de mejor calificación, en particular, las de tres y cuatro estrellas tienden a captar a los estudiantes de mejor **medida de competitividad formativa**, algo esperado dada la naturaleza del fenómeno estudiado. Además, la variable categórica **Research** juega un papel determinante en la selectividad, mientras que la varaible **Gender** es indeterminante estadísticamente para aumentar las probabilidades de ingreso de un estudiante a una universidad de su preferencia.
+
+Adicionalmente, el análisis de conglomerados muestró que efectivamente existían en el conjunto de datos registros significativamente homogéneos entre sí y a su vez se parados de otros. En este sentido, los métodos de aglomeración jerárquicos y no-jerárquicos ayudaron a comprender cómo estaban dispuestos esos grupos y los valores extraños por reevaluar. Así, es relevante la semejanza de perfiles de estudiantes que por nacionalidad abarcan el cercano, medio y lejano oriente al conformar un conglomerado de alta masa, aunque las nacionalidades de Japón, Indonesia y Nepal tomen distancia de su centroide, tales que pudiesen conformar jerárquicamente conglomerados por sí mismos. Por otro lado, el conglomerado al cual pertenece Colombia podría interpretarse como uno que recoge estudiantes muy comprometidos con su formación, dado que son reconocidas las diferencias de los sistemas educativos en vigor en las nacionalidades que lo conforman.
 
 Por último, es importante resaltar el aspecto técnico relacionado con el procesamiento estadístico hecho en este estudio a nivel de robustez, eficiencia e integración que R, RStudio y RMarkdown ofrecen al usuario para que este se pueda enfocar en él sin pasar mayores inconvenientes con el soporte documental para presentarlo.
 
